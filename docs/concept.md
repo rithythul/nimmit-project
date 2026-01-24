@@ -1,13 +1,17 @@
 # Nimmit: The Operating System for Virtual Work
 
 ## The Vision
-**Nimmit is not a marketplace. It is a High-Tech Creative Factory.**
+**Nimmit is not a marketplace. It is the Operating System for Virtual Work.**
 Marketplaces connect you to random freelancers. Nimmit connects you to a **Centralized Command Center**.
-We operate a physical, high-tech campus in Cambodia where hundreds of specialized pros (video editors, designers, developers) work together under one roof, powered by AI.
+We operate a specialized ecosystem in Cambodia where hundreds of pro-level creators (video editors, designers, developers) work together, powered by AI.
 
 We are solving the two biggest problems in the virtual assistance industry:
 1.  **For Clients**: The "Bus Factor" (what if my VA leaves?) and the "Management Tax" (I don't have time to manage).
 2.  **For Talent**: The "Experience Gap" (how do I get a job without experience?).
+
+## The Name: *Nimitt* (និមិត្ត)
+The name comes from the Khmer word for **"Vision"** or **"Mental Creation"**.
+It refers to the act of conjuring a concept into reality—taking a thought and manifesting it. This is the core promise of the platform: You have the vision; Nimmit brings it to life.
 
 ---
 
@@ -20,16 +24,16 @@ Our AI Partner, **Nimmit**, handles the **80% of "friction work"**:
 
 This allows our human team to focus 100% on **execution**, making them 5x-10x more productive than a standard VA.
 
-## 2. 🏭 The High-Tech Factory: Centralized Excellence
-We don't rely on scattered remote freelancers. We build **Specialized Pools** in our high-tech campus.
+## 2. ⚡ The Nimmit Model: Centralized Excellence
+We don't rely on scattered remote freelancers. We build **Specialized Pools**.
 -   **The Pools:**
     -   **Creative:** Video Editors, Visual Designers.
     -   **Technical:** Webflow/Squarespace Devs.
     -   **Operations:** Platform Specialists (Spotify, Kit, Shopify).
 -   **The "Pro" Standard:** These are high-paid professionals, not low-cost bidders.
--   **The Factory Model:** We combine the structure of a factory with intellectual creativity.
-    -   *Student to Pro Pipeline:* We identify top talent (often students) and train them in our "Factory" to become elite pros.
--   **Collaboration:** Because they are in the same building, they solve problems together instantly.
+-   **The Nimmit Standard:** We combine the reliability of a system with intellectual creativity.
+    -   *Student to Pro Pipeline:* We identify top talent (often students) and train them to become elite pros.
+-   **Collaboration:** Because they are together, they solve problems instantly.
 
 ## 3. 🧠 Institutional Memory: The Platform Remembers
 In a typical agency, if your VA quits, your knowledge quits with them.
