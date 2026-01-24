@@ -1,0 +1,35 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: nimmit-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: nimmit
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: nimmit-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  clamav:
+    image: clamav/clamav:latest
+    container_name: nimmit-clamav
+    ports:
+      - "3310:3310"
+    volumes:
+      - clamav-data:/var/lib/clamav
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+  redis-data:
+  clamav-data:

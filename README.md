@@ -2,7 +2,7 @@
 
 **Premium Asian Talent. Overnight Delivery. Fraction of US Cost.**
 
-An on-demand marketplace connecting US clients with skilled Cambodian workers for remote work including video editing, graphic design, web development, social media management, and more.
+The **Operating System for Virtual Work**. A tech-enabled platform where US clients build long-term relationships with dedicated assistants, powered by AI.
 
 ---
 
@@ -15,14 +15,18 @@ An on-demand marketplace connecting US clients with skilled Cambodian workers fo
 
 ## 📋 Project Overview
 
-Nimmit is a curated platform that leverages Cambodia's timezone advantage to provide "overnight delivery" for US clients. While US clients sleep, skilled Cambodian workers complete their tasks.
+**Nimmit is NOT a marketplace.** It's a relationship-focused virtual assistant service where:
+
+- 🤝 **Real Relationships** - Clients build long-term partnerships with their dedicated assistant.
+- 🛡️ **Trusted Team** - The KOOMPI team (trusted, trained, multi-skilled) delivers the work.
+- ✨ **Overnight Magic** - US clients sleep, wake up to completed work.
+- 🏆 **Trusted Partner** - Nimmit is a brand/partner, not a freelancer directory. We don't post jobs for random proposals.
 
 ### Key Features
-- 🤖 AI-powered job matching
-- 📊 Credit-based subscription model
-- 💬 Real-time messaging and status tracking
-- 🎯 Quality guarantees and revisions
-- ⚡ Fast turnaround (12-48 hours)
+-   🤖 **AI Job Intake (Nimmit)** - Structuring work for perfect execution.
+-   🧠 **Context Cloud** - The platform remembers your brand voice.
+-   ⚡ **Overnight Delivery** - Work while you sleep.
+-   🎯 **Managed Quality** - Not a marketplace; a managed team.
 
 ### Target Market
 - Digital solopreneurs ($5K-50K/month revenue)
@@ -31,37 +35,19 @@ Nimmit is a curated platform that leverages Cambodia's timezone advantage to pro
 
 ---
 
-## 📚 Documentation
-
-### Business Documentation
-Located in [`docs/business/`](./docs/business/)
-- [Concept Paper](./docs/business/concept-paper.md) - Business model, market analysis, financials
-- [Deep Dive Analysis](./docs/business/deep-dive-analysis.md) - Legal, compliance, operations
-- [Service Menu](./docs/business/service-menu.md) - Complete service catalog with pricing
-
-### Operational Documentation
-Located in [`docs/operations/`](./docs/operations/)
-- [US Brand & Culture Guide](./docs/operations/us-brand-culture-guide.md) - Training for team members
-
-### Technical Documentation
-Located in [`architecture/`](./architecture/)
-- [Architecture Design](./architecture/design.md) - System architecture, tech stack, database design
-- [Architecture Diagrams](./architecture/diagrams.md) - Visual system diagrams
-
-See [docs/README.md](./docs/README.md) for a complete documentation index.
+See [docs/design.md](./docs/design.md) for technical details and [docs/concept.md](./docs/concept.md) for the service vision.
 
 ---
 
 ## 🏗️ Technology Stack
 
 ### Frontend
-- **Framework:** React + Vite + TypeScript
+- **Framework:** Next.js 16 (App Router)
 - **Styling:** TailwindCSS + shadcn/ui
 - **State:** Zustand + TanStack Query
-- **Deployment:** Vercel
 
 ### Backend
-- **Framework:** Node.js + Express + TypeScript
+- **Framework:** Next.js API Routes (Serverless)
 - **Database:** MongoDB (Atlas)
 - **Cache:** Redis (Upstash)
 - **Queue:** Bull/BullMQ
@@ -80,18 +66,15 @@ See [docs/README.md](./docs/README.md) for a complete documentation index.
 
 ```
 nimmit/
-├── docs/                    # Business & operational documentation
-│   ├── business/            # Business plans, analysis, service menu
-│   ├── operations/          # Operational guides and training
-│   └── README.md            # Documentation index
-│
-├── architecture/            # Technical architecture & design
+├── docs/                    # Documentation
+│   ├── concept.md           # Service vision and operational model
 │   ├── design.md            # System architecture document
 │   └── diagrams.md          # Architecture diagrams
 │
-├── src/                     # Source code (coming soon)
-│   ├── backend/             # Express API server
-│   └── frontend/            # React web application
+├── src/                     # Source code
+│   ├── app/                 # Next.js App Router
+│   ├── components/          # React components
+│   └── lib/                 # Utilities
 │
 ├── .gitignore
 └── README.md                # This file
