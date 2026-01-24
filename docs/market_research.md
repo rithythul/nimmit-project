@@ -25,7 +25,7 @@ Based on the "Nimmit Model" (Video/Design Pools), these are the highest-value ta
 ### B. The "Agency of One"
 *   **The Pain:** "I sold the project, but now I'm stuck doing the work. I can't sell more."
 *   **The Need:** White-label Graphic Design, Webflow Dev, Copywriting.
-*   **Why Nimmit:** **Infinite Capacity.** They can sell huge projects without fulfillment bottlenecks, knowing the Factory can elastically absorb the volume. They look like a 10-person agency but pay for 0 employees.
+*   **Why Nimmit:** **Infinite Capacity.** They can sell huge projects without fulfillment bottlenecks, knowing the **Nimmit System** can elastically absorb the volume. They look like a 10-person agency but pay for 0 employees.
 *   **Nimmit Fit:** **Design & Dev Pools.**
 
 ### C. The High-End Real Estate Agent

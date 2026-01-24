@@ -39,12 +39,12 @@ Nimmit is a tech-enabled platform where US clients build long-term relationships
 1.  **Clients** - US-based founders/executives.
 2.  **Nimmit (The AI Partner)** - The "OS" managing context, quality, and intake.
 3.  **Human PMs** - The strategists who verify the AI's brief and manage the pools.
-4.  **The Specialist Pools** - High-value pros (Editors, Designers) located in the **Nimmit Factory**.
+4.  **The Specialist Pools** - High-value pros (Editors, Designers) located in the **Nimmit Ecosystem**.
 5.  **Admins** - Platform managers.
 
 ### Business Model
-**The High-Tech Factory Model:**
--   **Centralized Infrastructure:** Talent is co-located in a physical "Creative Campus" for maximum quality and speed.
+**The Nimmit Model:**
+-   **Centralized Infrastructure:** Talent is co-located in a physical "Nimmit Campus" for maximum quality and speed.
 -   **Tech Leverage:** AI handles 80% of the friction (structuring, context, QA).
 -   **Managed Quality:** Work is executed by specialized pools, not random individuals.
 -   **Retention (The Moat):** The Platform holds the "Institutional Memory," preventing knowledge loss when workers churn.
