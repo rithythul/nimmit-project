@@ -2,37 +2,40 @@
 
 **The Concept:**
 If Nimmit is a "System" in the physical world, the App is the **"Digital Glass Window"** into that system.
-The client shouldn't feel like they are filling out a form; they should feel like they are **commanding a team**.
+The client shouldn't feel like they are filling out a form; they should feel like they are **commanding a capable platform**.
 
 ## 1. The Experience: "Command & Control"
 Instead of a standard SaaS dashboard, we build a **Mission Control Center**.
 
-*   **Visual Vibe:** Professional, clean, focus on **Human Connection**.
-*   **The "Pulse":** The user should feel the human presence.
-    *   *Indicator:* "🟢 Bora (Editor) is Online"
-    *   *Indicator:* "⚡ Nimmit Pool: Active"
+*   **Visual Vibe:** Professional, clean, focused on **Results**.
+*   **The "Pulse":** The user should feel the platform is active and working.
+    *   *Indicator:* "⚡ Nimmit Team: Active"
+    *   *Indicator:* "3 specialists available in Video Pool"
 
 ## 2. The Workflow: Intake ➔ Production
 
 ### Step 1: The Briefing (AI Intake)
-*   **The Interface:** A focused, high-end chat interface (Voice & Text).
-*   **The Persona:** "Nimmit" - Efficient, smart, strategic.
+*   **The Interface:** A focused, chat-first interface.
+*   **The Persona:** "Nimmit" - Efficient, smart, guides clients from vague ideas to clear specs.
 *   **The Interaction:**
     *   *Client:* "I need a hype video for our launch."
-    *   *Nimmit:* "On it. I see your brand uses 'Cyberpunk' style usually. Is this for the 'Alpha' product launch? I'll pull those assets." (Institutional Memory)
+    *   *Nimmit:* "Got it. What's the target length? And should I pull your brand assets from last time?" (Institutional Memory)
 
-### Step 2: The Handover (Human PM)
-*   Once Nimmit clarifies the brief, a **Human PM card** appears.
-*   **"Sophea (Senior Playmaker)** is reviewing your strategy... Approved. Routing to Video Pool A."
-*   *Why:* This visualizes the "Human in the Loop" safety net. It's the Nimmit Standard.
+### Step 2: Smart Routing (Platform Logic)
+*   Nimmit AI analyzes the task: category, complexity, required skills.
+*   Platform checks worker availability, skills match, and current workload.
+*   **Auto-assigns to the best available specialist**—client doesn't choose or see who.
+*   *Why:* This enables scale. 10 workers can serve 100+ clients when routing is smart.
 
 ### Step 3: Production (The Pool)
-*   **Visibility:** The user sees the ticket move into the **"Active Queue"**.
-*   **Real-Time Status:** "Rendering", "Quality Check", "Final Polish".
-*   **Transparency:** They don't pick the specific worker (Nimmit manages that), but they see the *progress*.
+*   **Visibility:** The user sees the job status: "In Progress", "Quality Check", "Ready for Review".
+*   **Transparency:** Clients see *progress*, not *people*. Nimmit is the brand.
+*   **Quality:** Platform ensures consistency regardless of which worker executes.
 
-## 3. Confirmed Design Decisions (User Feedback)
+## 3. Confirmed Design Decisions
 
-1.  **Transparency:** **Show the Human.** Clients will see "Bora is editing," not just "Video Pool." This builds the relationship while Nimmit ensures the standard.
-2.  **Interaction Style:** **Chat-First (WhatsApp Style).** Nimmit acts as the conversational partner, guiding the client from a vague idea to a clear spec across the chat.
-3.  **The Vibe:** **No Building Metaphors.** Keep it abstract. Focus on the *result* and the *person* doing the work, not a map of a physical office.
+1.  **Platform-First:** **Nimmit is the brand.** Clients interact with the platform, not individual workers. Workers are interchangeable—this enables scale.
+2.  **Interaction Style:** **Chat-First.** Nimmit AI acts as the conversational partner, guiding the client from a vague idea to a clear spec.
+3.  **Smart Routing:** Platform analyzes tasks and auto-assigns based on skills + availability. No client preference for specific workers.
+4.  **Scalability:** 10 AI-powered workers → 100+ clients. AI handles 80% of friction; humans focus on execution.
+5.  **The Vibe:** Professional, efficient, results-focused. The promise is quality output, not personal relationships.

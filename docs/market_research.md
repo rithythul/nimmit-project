@@ -5,13 +5,28 @@
 The US market is shifting from "Employees" to "Solopreneurs." This is the perfect storm for Nimmit.
 
 *   **The Solopreneur Explosion:** There are **41 Million** solopreneurs in the US (2025 proj.).
-    *   *Insight:* These 41M people *are* businesses, but they have 0 employees. They are capped by time. **Crucially, they avoid outsourcing because of the "Re-Training Tax"—the exhaustion of explaining their brand to a new freelancer every time. They need a System that remembers.**
+    *   *Insight:* These 41M people *are* businesses, but they have 0 employees. They are capped by time. They need a **Platform** that scales with them.
 *   **The Outsourcing Gap:**
     *   **37%** of small businesses currently outsource.
     *   **54%** plan to outsource by 2025.
     *   *Top Outsourced Roles:* **Digital Marketing (34%)** and **Design (21%)**.
     *   *Emerging Demand:* **"Platform Operations"** (Managing specialized tools like Spotify/Kit).
 *   **The Money:** The Business Process Outsourcing (BPO) market is **$146 Billion**.
+
+## The Nimmit Advantage: Platform-First Scalability
+
+**The 10→100 Model:** A lean team of 10 AI-powered professionals can serve 100+ clients.
+
+*   **How it works:**
+    *   AI handles 80% of friction (briefing, context retrieval, quality checks)
+    *   Platform routes tasks by skills + availability—no dedicated worker assignments
+    *   Workers are interchangeable; the *platform* ensures consistency
+    *   Clients trust **Nimmit** (the brand), not individual workers
+
+*   **Why this matters:**
+    *   Lower overhead = competitive pricing
+    *   No "Bus Factor"—if a worker leaves, service continues seamlessly
+    *   Elastic capacity—absorb volume spikes without hiring
 
 ## 2. The 4 Ideal Client Profiles (Target Professions)
 Based on the "Nimmit Model" (Video/Design Pools), these are the highest-value targets.

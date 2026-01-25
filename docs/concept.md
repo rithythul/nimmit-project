@@ -3,10 +3,16 @@
 ## The Vision
 **Nimmit is not a marketplace. It is the Operating System for Virtual Work.**
 Marketplaces connect you to random freelancers. Nimmit connects you to a **Centralized Command Center**.
-We operate a specialized ecosystem in Cambodia where hundreds of pro-level creators (video editors, designers, developers) work together, powered by AI.
+We operate a specialized ecosystem in Cambodia where a lean team of pro-level creators (video editors, designers, developers) work together, powered by AI to serve clients at scale.
+
+**The Platform Model:**
+- Clients submit work to **Nimmit** (the platform), not to individual workers
+- Nimmit's AI analyzes tasks and routes them to the best available specialist
+- A team of 10 AI-powered professionals can serve 100+ clients
+- The platform ensures quality and consistency—workers are interchangeable
 
 We are solving the two biggest problems in the virtual assistance industry:
-1.  **For Clients**: The "Bus Factor" (what if my VA leaves?) and the "Management Tax" (I don't have time to manage).
+1.  **For Clients**: The "Management Tax" (I don't have time to manage) and quality inconsistency.
 2.  **For Talent**: The "Experience Gap" (how do I get a job without experience?).
 
 ## The Name: *Nimitt* (និមិត្ត)
@@ -38,16 +44,16 @@ We don't rely on scattered remote freelancers. We build **Specialized Pools**.
 ## 3. 🧠 Institutional Memory: The Platform Remembers
 In a typical agency, if your VA quits, your knowledge quits with them.
 With Nimmit, **the Platform holds the context.**
--   **The Workflow:** Client ➔ **Nimmit AI** (Clarifies) ➔ **Human PM** (Strategizes) ➔ **Specialist Pool** (Executes).
--   **The Context Cloud:** Every preference, feedback loop, and asset is stored in our vector database.
--   **Zero Switching Cost**: A new assistant can step in and immediately know your brand voice because the *System* tells them.
--   **Defensibility**: The relationships are with Nimmit (the platform), not just the individual.
+-   **The Workflow:** Client ➔ **Nimmit AI** (Analyzes & Routes) ➔ **Best Available Specialist** (Executes).
+-   **The Context Cloud:** Every preference, feedback loop, and asset is stored in our system.
+-   **Zero Switching Cost**: Any team member can pick up work because the *Platform* holds all context.
+-   **Defensibility**: Clients trust Nimmit (the platform), not individual workers. Workers are fungible.
 
-## 4. 🌙 Asynchronous Velocity: Overnight Magic
+## 4. 🌙 Asynchronous Velocity: "Overnight Magic" (Marketing Position)
 We turn the timezone difference from a "bug" into a "feature."
 -   **Brief it at 5 PM, Review it at 9 AM.**
--   While you sleep, the Nimmit engine (AI + Human Team) is at work.
--   This isn't just "night shift"; it's a coordinated operational workflow designed for velocity.
+-   While US clients sleep, the Cambodia team is at work.
+-   *Note: This is a marketing message, not a product feature. We don't promise overnight delivery—we deliver quality work efficiently.*
 
 ---
 

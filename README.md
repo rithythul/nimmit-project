@@ -1,32 +1,35 @@
 # Nimmit
 
-**Premium Asian Talent. Overnight Delivery. Fraction of US Cost.**
+**The Operating System for Virtual Work.**
 
-The **Operating System for Virtual Work**. A tech-enabled platform where US clients build long-term relationships with dedicated assistants, powered by AI.
+A tech-enabled platform where **Nimmit is the service**. Clients submit work to the platform; AI analyzes tasks and routes them to the best available specialist. A lean team of 10 AI-powered professionals can serve 100+ clients.
 
 ---
 
 ## 🚀 Project Status
 
-**Phase:** Architecture & Planning
-**Next:** MVP Development (Weeks 1-6)
+**Phase:** MVP Development
+**Current Sprint:** Security & Foundation
+**Last Updated:** January 25, 2026
+
+📊 See [Progress Report](./docs/progress_report.md) | 📋 See [Task Backlog](./docs/tasks.md)
 
 ---
 
 ## 📋 Project Overview
 
-**Nimmit is NOT a marketplace.** It's a relationship-focused virtual assistant service where:
+**Nimmit is NOT a marketplace.** It's a platform-first managed service where:
 
-- 🤝 **Real Relationships** - Clients build long-term partnerships with their dedicated assistant.
-- 🛡️ **Trusted Team** - The KOOMPI team (trusted, trained, multi-skilled) delivers the work.
-- ✨ **Overnight Magic** - US clients sleep, wake up to completed work.
-- 🏆 **Trusted Partner** - Nimmit is a brand/partner, not a freelancer directory. We don't post jobs for random proposals.
+- 🤖 **Platform is the Brand** - Clients trust Nimmit, not individual workers. Workers are interchangeable.
+- ⚡ **Smart Routing** - AI analyzes tasks and assigns to the best available specialist automatically.
+- 🧠 **Context Cloud** - The platform remembers everything—any worker can pick up any task.
+- 📈 **10→100 Scale** - AI handles 80% of friction; humans focus on execution.
 
 ### Key Features
--   🤖 **AI Job Intake (Nimmit)** - Structuring work for perfect execution.
--   🧠 **Context Cloud** - The platform remembers your brand voice.
--   ⚡ **Overnight Delivery** - Work while you sleep.
--   🎯 **Managed Quality** - Not a marketplace; a managed team.
+-   🤖 **AI Job Intake** - Structuring vague requests into actionable briefs.
+-   🧠 **Institutional Memory** - Platform holds context, workers are fungible.
+-   🎯 **Managed Quality** - Consistent output regardless of which worker executes.
+-   ⚡ **Smart Routing** - Automatic assignment based on skills + availability.
 
 ### Target Market
 - Digital solopreneurs ($5K-50K/month revenue)
@@ -35,7 +38,13 @@ The **Operating System for Virtual Work**. A tech-enabled platform where US clie
 
 ---
 
-See [docs/design.md](./docs/design.md) for technical details and [docs/concept.md](./docs/concept.md) for the service vision.
+### 📚 Documentation
+- [Concept](./docs/concept.md) - Service vision and operational model
+- [Product Vision](./docs/product_vision.md) - UX and workflow design
+- [Technical Design](./docs/design.md) - Architecture and database schemas
+- [Market Research](./docs/market_research.md) - Target market and positioning
+- [Progress Report](./docs/progress_report.md) - Current status and gaps
+- [Task Backlog](./docs/tasks.md) - Prioritized development tasks
 
 ---
 
@@ -84,33 +93,37 @@ nimmit/
 
 ## 🎯 Roadmap
 
-### Phase 1: MVP (Weeks 1-6)
-- [ ] User authentication (client, worker, admin)
-- [ ] Job creation and assignment
-- [ ] File upload/download
-- [ ] Basic messaging
+### ✅ Completed
+- [x] User authentication (client, worker, admin)
+- [x] Job creation and assignment (manual)
+- [x] Basic file upload
+- [x] In-job messaging
+- [x] Role-based dashboards
+- [x] Job status workflow
+
+### 🔴 Sprint 1: Security & Foundation (Current)
+- [ ] Secure file storage (R2 migration)
+- [ ] Worker skill levels
+- [ ] File validation & virus scanning
+
+### 🟠 Sprint 2: AI & Automation
+- [ ] AI job routing (auto-assignment)
+- [ ] QA automation for deliverables
+
+### 🟡 Sprint 3: Revenue & Scale
 - [ ] Stripe payment integration
-- [ ] Admin dashboard
-
-### Phase 2: Automation (Weeks 7-12)
-- [ ] AI-powered job matching
-- [ ] Subscription tiers with credits
 - [ ] Real-time notifications
+
+### 🟢 Sprint 4: The Moat
+- [ ] Context Cloud v1 (vector DB)
 - [ ] Email notifications
-- [ ] Worker performance tracking
 
-### Phase 3: Scale (Months 4-6)
-- [ ] Real-time messaging
-- [ ] Time tracking
-- [ ] Advanced analytics
-- [ ] Referral system
-- [ ] Quality assurance workflows
+### 📋 Backlog
+- [ ] Admin analytics dashboard
+- [ ] Audit logging
+- [ ] Mobile responsive improvements
 
-### Phase 4: Growth (Months 6-12)
-- [ ] Mobile apps
-- [ ] Advanced AI features
-- [ ] Video processing automation
-- [ ] API for integrations
+See [docs/tasks.md](./docs/tasks.md) for detailed specs.
 
 ---
 

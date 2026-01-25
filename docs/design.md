@@ -33,27 +33,32 @@
 
 ### Platform Purpose
 **The Operating System for Virtual Work.**
-Nimmit is a tech-enabled platform where US clients build long-term relationships with dedicated assistants, powered by an AI OS that ensures quality and continuity. We are **NOT** a marketplace; we are a managed platform.
+Nimmit is a tech-enabled platform where the **platform itself** is the service. Clients submit work to Nimmit; the platform analyzes tasks and routes them to the best available specialist. We are **NOT** a marketplace; we are a managed, scalable platform.
+
+**The Scale Model:** A team of 10 AI-powered professionals can serve 100+ clients because:
+- AI handles 80% of friction (structuring, context, QA)
+- Smart routing distributes work by availability
+- Workers are interchangeable—the platform ensures quality
 
 ### Core User Types
-1.  **Clients** - US-based founders/executives.
-2.  **Nimmit (The AI Partner)** - The "OS" managing context, quality, and intake.
-3.  **Human PMs** - The strategists who verify the AI's brief and manage the pools.
-4.  **The Specialist Pools** - High-value pros (Editors, Designers) located in the **Nimmit Ecosystem**.
-5.  **Admins** - Platform managers.
+1.  **Clients** - US-based founders/solopreneurs submitting work.
+2.  **Nimmit Platform** - The "OS" managing task analysis, routing, and quality.
+3.  **Workers** - Specialists in pools (Video, Design, Web, etc.) who execute work.
+4.  **Admins** - Platform managers who oversee operations.
 
 ### Business Model
 **The Nimmit Model:**
--   **Centralized Infrastructure:** Talent is co-located in a physical "Nimmit Campus" for maximum quality and speed.
+-   **Platform-First:** Clients trust Nimmit, not individual workers. Workers are fungible.
+-   **Smart Routing:** AI analyzes tasks and assigns to best available worker based on skills + availability.
 -   **Tech Leverage:** AI handles 80% of the friction (structuring, context, QA).
--   **Managed Quality:** Work is executed by specialized pools, not random individuals.
--   **Retention (The Moat):** The Platform holds the "Institutional Memory," preventing knowledge loss when workers churn.
+-   **Scalability:** 10 workers → 100+ clients through efficient routing and AI amplification.
+-   **Institutional Memory:** Platform holds all context, enabling any worker to pick up any task.
 
 ### Key Differentiators
--   **Institutional Memory:** The "Context Cloud" remembers everything, so you don't have to repeat yourself.
--   **Asynchronous Velocity:** "Overnight Magic" workflow optimized for speed.
+-   **Institutional Memory:** The platform remembers everything—workers are interchangeable.
+-   **AI-Powered Scale:** Small team serves large client base through smart automation.
 -   **Talent Engine:** Transforming students into senior-level performers via AI.
--   **Data Moat:** The system gets smarter with every interaction.
+-   **Platform as Brand:** Clients buy from Nimmit, not from individuals.
 
 ---
 
