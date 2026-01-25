@@ -6,30 +6,30 @@ A tech-enabled platform where **Nimmit is the service**. Clients submit work to 
 
 ---
 
-## 🚀 Project Status
+## Project Status
 
 **Phase:** MVP Development
 **Current Sprint:** Security & Foundation
 **Last Updated:** January 25, 2026
 
-📊 See [Progress Report](./docs/progress_report.md) | 📋 See [Task Backlog](./docs/tasks.md)
+See [Progress Report](./docs/progress_report.md) | See [Task Backlog](./docs/tasks.md)
 
 ---
 
-## 📋 Project Overview
+## Project Overview
 
 **Nimmit is NOT a marketplace.** It's a platform-first managed service where:
 
-- 🤖 **Platform is the Brand** - Clients trust Nimmit, not individual workers. Workers are interchangeable.
-- ⚡ **Smart Routing** - AI analyzes tasks and assigns to the best available specialist automatically.
-- 🧠 **Context Cloud** - The platform remembers everything—any worker can pick up any task.
-- 📈 **10→100 Scale** - AI handles 80% of friction; humans focus on execution.
+- **Platform is the Brand** - Clients trust Nimmit, not individual workers. Workers are interchangeable.
+- **Smart Routing** - AI analyzes tasks and assigns to the best available specialist automatically.
+- **Context Cloud** - The platform remembers everything—any worker can pick up any task.
+- **10-to-100 Scale** - AI handles 80% of friction; humans focus on execution.
 
 ### Key Features
--   🤖 **AI Job Intake** - Structuring vague requests into actionable briefs.
--   🧠 **Institutional Memory** - Platform holds context, workers are fungible.
--   🎯 **Managed Quality** - Consistent output regardless of which worker executes.
--   ⚡ **Smart Routing** - Automatic assignment based on skills + availability.
+- **AI Job Intake** - Structuring vague requests into actionable briefs.
+- **Institutional Memory** - Platform holds context, workers are fungible.
+- **Managed Quality** - Consistent output regardless of which worker executes.
+- **Smart Routing** - Automatic assignment based on skills + availability.
 
 ### Target Market
 - Digital solopreneurs ($5K-50K/month revenue)
@@ -38,7 +38,7 @@ A tech-enabled platform where **Nimmit is the service**. Clients submit work to 
 
 ---
 
-### 📚 Documentation
+### Documentation
 - [Concept](./docs/concept.md) - Service vision and operational model
 - [Product Vision](./docs/product_vision.md) - UX and workflow design
 - [Technical Design](./docs/design.md) - Architecture and database schemas
@@ -48,7 +48,7 @@ A tech-enabled platform where **Nimmit is the service**. Clients submit work to 
 
 ---
 
-## 🏗️ Technology Stack
+## Technology Stack
 
 ### Frontend
 - **Framework:** Next.js 16 (App Router)
@@ -71,7 +71,7 @@ A tech-enabled platform where **Nimmit is the service**. Clients submit work to 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 nimmit/
@@ -91,7 +91,7 @@ nimmit/
 
 ---
 
-## 🎯 Roadmap
+## Roadmap
 
 ### ✅ Completed
 - [x] User authentication (client, worker, admin)
@@ -118,7 +118,7 @@ nimmit/
 - [ ] Context Cloud v1 (vector DB)
 - [ ] Email notifications
 
-### 📋 Backlog
+### Backlog
 - [ ] Admin analytics dashboard
 - [ ] Audit logging
 - [ ] Mobile responsive improvements
@@ -127,7 +127,7 @@ See [docs/tasks.md](./docs/tasks.md) for detailed specs.
 
 ---
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -143,38 +143,36 @@ See [docs/tasks.md](./docs/tasks.md) for detailed specs.
 git clone https://github.com/rithythul/nimmit.git
 cd nimmit
 
-# Install dependencies (coming soon)
-# npm install
+# Install dependencies
+bun install
 
 # Set up environment variables
-# cp .env.example .env
-# Edit .env with your credentials
+cp .env.example .env.local
+# Edit .env.local with your credentials
 
 # Run development server
-# npm run dev
+bun run dev
 ```
-
-**Note:** Source code setup coming in Phase 1 MVP development.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a private project currently in development. Contribution guidelines will be added when the project moves to collaborative development.
 
 ---
 
-## 📄 License
+## License
 
 Proprietary - All rights reserved
 
 ---
 
-## 📞 Contact
+## Contact
 
 **Project Lead:** Rithy Thul
 **Repository:** https://github.com/rithythul/nimmit
 
 ---
 
-**Built with ❤️ in Cambodia, serving clients in the US**
+**Built in Cambodia, serving clients in the US**

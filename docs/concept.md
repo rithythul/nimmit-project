@@ -21,7 +21,7 @@ It refers to the act of conjuring a concept into reality—taking a thought and 
 
 ---
 
-## 1. ⚡ Tech Leverage: The AI OS
+## 1. Tech Leverage: The AI OS
 Traditional agencies scale linearly (1 hour of work = 1 hour of human time). Nimmit scales exponentially.
 Our AI Partner, **Nimmit**, handles the **80% of "friction work"**:
 -   **Structuring**: Converting vague ideas into actionable briefs.
@@ -30,7 +30,7 @@ Our AI Partner, **Nimmit**, handles the **80% of "friction work"**:
 
 This allows our human team to focus 100% on **execution**, making them 5x-10x more productive than a standard VA.
 
-## 2. ⚡ The Nimmit Model: Centralized Excellence
+## 2. The Nimmit Model: Centralized Excellence
 We don't rely on scattered remote freelancers. We build **Specialized Pools**.
 -   **The Pools:**
     -   **Creative:** Video Editors, Visual Designers.
@@ -41,7 +41,7 @@ We don't rely on scattered remote freelancers. We build **Specialized Pools**.
     -   *Student to Pro Pipeline:* We identify top talent (often students) and train them to become elite pros.
 -   **Collaboration:** Because they are together, they solve problems instantly.
 
-## 3. 🧠 Institutional Memory: The Platform Remembers
+## 3. Institutional Memory: The Platform Remembers
 In a typical agency, if your VA quits, your knowledge quits with them.
 With Nimmit, **the Platform holds the context.**
 -   **The Workflow:** Client ➔ **Nimmit AI** (Analyzes & Routes) ➔ **Best Available Specialist** (Executes).
@@ -49,7 +49,7 @@ With Nimmit, **the Platform holds the context.**
 -   **Zero Switching Cost**: Any team member can pick up work because the *Platform* holds all context.
 -   **Defensibility**: Clients trust Nimmit (the platform), not individual workers. Workers are fungible.
 
-## 4. 🌙 Asynchronous Velocity: "Overnight Magic" (Marketing Position)
+## 4. Asynchronous Velocity: "Overnight Magic" (Marketing Position)
 We turn the timezone difference from a "bug" into a "feature."
 -   **Brief it at 5 PM, Review it at 9 AM.**
 -   While US clients sleep, the Cambodia team is at work.
