@@ -23,6 +23,7 @@ interface UploadedFile {
   id: string;
   name: string;
   url: string;
+  key: string;
   size: number;
   mimeType: string;
 }
@@ -242,6 +243,23 @@ export default function WorkerJobDetailPage() {
                         </CardContent>
                     </Card>
 
+                    {/* Context from Past Work */}
+                    {job.contextFromPastWork && (
+                        <Card className="border-blue-200 bg-blue-50/50">
+                            <CardHeader>
+                                <CardTitle className="text-blue-900">Context from Previous Work</CardTitle>
+                                <CardDescription>
+                                    Relevant insights from this client&apos;s past jobs
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="prose prose-sm max-w-none whitespace-pre-wrap text-blue-900">
+                                    {job.contextFromPastWork}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
+
                     {/* Client Files */}
                     {job.files.length > 0 && (
                         <Card>
@@ -267,6 +285,7 @@ export default function WorkerJobDetailPage() {
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <FileUpload
+                                    jobId={params.id as string}
                                     onFilesUploaded={handleDeliverablesUploaded}
                                     maxFiles={10}
                                 />

@@ -8,9 +8,52 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       type={type}
       data-slot="input"
       className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        // Base styles
+        "h-11 w-full min-w-0 px-4 py-2.5",
+        "text-base md:text-sm",
+        "text-[var(--nimmit-text-primary)]",
+        "placeholder:text-[var(--nimmit-text-tertiary)]",
+
+        // Background and border
+        "bg-[var(--nimmit-bg-secondary)]",
+        "border border-transparent",
+        "rounded-[var(--nimmit-radius-lg)]",
+
+        // Shadow
+        "shadow-[var(--nimmit-shadow-inner)]",
+
+        // Transitions
+        "transition-all duration-200",
+        "outline-none",
+
+        // Focus state
+        "focus-visible:bg-[var(--nimmit-bg-elevated)]",
+        "focus-visible:border-[var(--nimmit-accent-primary)]",
+        "focus-visible:ring-[3px]",
+        "focus-visible:ring-[var(--nimmit-ring-color)]",
+        "focus-visible:shadow-none",
+
+        // Error state
+        "aria-invalid:border-[var(--nimmit-error)]",
+        "aria-invalid:ring-[var(--nimmit-error)]/20",
+
+        // Selection
+        "selection:bg-[var(--nimmit-accent-primary-light)]",
+        "selection:text-[var(--nimmit-text-primary)]",
+
+        // File input
+        "file:inline-flex file:h-8 file:border-0",
+        "file:bg-[var(--nimmit-bg-tertiary)]",
+        "file:text-[var(--nimmit-text-primary)]",
+        "file:text-sm file:font-medium",
+        "file:mr-3 file:px-3",
+        "file:rounded-[var(--nimmit-radius-md)]",
+
+        // Disabled
+        "disabled:pointer-events-none",
+        "disabled:cursor-not-allowed",
+        "disabled:opacity-50",
+
         className
       )}
       {...props}

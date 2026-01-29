@@ -1,26 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { writeFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
 import { v4 as uuidv4 } from "uuid";
+import { getPresignedUploadUrl } from "@/lib/storage/r2";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
-// Allowed MIME types
 const ALLOWED_TYPES = new Set([
-  // Images
   "image/jpeg",
   "image/png",
   "image/gif",
   "image/webp",
   "image/svg+xml",
-  // Videos
   "video/mp4",
   "video/webm",
   "video/quicktime",
-  // Documents
   "application/pdf",
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -28,30 +21,37 @@ const ALLOWED_TYPES = new Set([
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   "application/vnd.ms-powerpoint",
   "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-  // Archives
   "application/zip",
   "application/x-rar-compressed",
-  // Text
   "text/plain",
   "text/csv",
 ]);
 
-// Sanitize filename to prevent path traversal
 function sanitizeFilename(filename: string): string {
-  // Remove path components and special characters
   const sanitized = filename
     .replace(/[/\\:*?"<>|]/g, "_")
     .replace(/\.\./g, "_")
     .replace(/^\.+/, "_")
     .trim();
 
-  // Limit length
-  const ext = path.extname(sanitized);
-  const name = path.basename(sanitized, ext).slice(0, 100);
+  const ext = sanitized.lastIndexOf(".") > 0 ? sanitized.slice(sanitized.lastIndexOf(".")) : "";
+  const name = sanitized.slice(0, sanitized.lastIndexOf(".") > 0 ? sanitized.lastIndexOf(".") : sanitized.length).slice(0, 100);
 
   return `${name}${ext}`;
 }
 
+/**
+ * POST /api/upload
+ * Generate a presigned URL for direct upload to R2
+ *
+ * Request body:
+ * {
+ *   filename: string;
+ *   contentType: string;
+ *   size: number;
+ *   jobId: string;
+ * }
+ */
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
@@ -62,68 +62,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const formData = await request.formData();
-    const file = formData.get("file") as File | null;
+    const body = await request.json();
+    const { filename, contentType, size, jobId } = body;
 
-    if (!file) {
+    if (!filename || !contentType || !jobId) {
       return NextResponse.json(
-        { success: false, error: { code: "BAD_REQUEST", message: "No file provided" } },
+        { success: false, error: { code: "BAD_REQUEST", message: "Missing required fields: filename, contentType, jobId" } },
         { status: 400 }
       );
     }
 
-    // Validate file size
-    if (file.size > MAX_FILE_SIZE) {
+    if (size > MAX_FILE_SIZE) {
       return NextResponse.json(
         { success: false, error: { code: "FILE_TOO_LARGE", message: "File exceeds 50MB limit" } },
         { status: 400 }
       );
     }
 
-    // Validate MIME type
-    if (!ALLOWED_TYPES.has(file.type)) {
+    if (!ALLOWED_TYPES.has(contentType)) {
       return NextResponse.json(
         { success: false, error: { code: "INVALID_TYPE", message: "File type not allowed" } },
         { status: 400 }
       );
     }
 
-    // Ensure upload directory exists
-    if (!existsSync(UPLOAD_DIR)) {
-      await mkdir(UPLOAD_DIR, { recursive: true });
-    }
-
-    // Generate unique filename
     const fileId = uuidv4();
-    const sanitizedName = sanitizeFilename(file.name);
-    const ext = path.extname(sanitizedName);
+    const sanitizedName = sanitizeFilename(filename);
+    const ext = sanitizedName.lastIndexOf(".") > 0 ? sanitizedName.slice(sanitizedName.lastIndexOf(".")) : "";
     const uniqueFilename = `${fileId}${ext}`;
 
-    // Write file
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const filePath = path.join(UPLOAD_DIR, uniqueFilename);
-
-    await writeFile(filePath, buffer);
-
-    // Return file metadata
-    const fileData = {
-      id: fileId,
-      name: sanitizedName,
-      url: `/uploads/${uniqueFilename}`,
-      size: file.size,
-      mimeType: file.type,
-    };
+    const clientId = session.user.id;
+    const presigned = await getPresignedUploadUrl(
+      clientId,
+      jobId,
+      uniqueFilename,
+      contentType
+    );
 
     return NextResponse.json({
       success: true,
-      data: fileData,
-      message: "File uploaded successfully",
+      data: {
+        uploadUrl: presigned.uploadUrl,
+        key: presigned.key,
+        fileId,
+        filename: sanitizedName,
+        expiresAt: presigned.expiresAt.toISOString(),
+      },
+      message: "Presigned URL generated",
     });
   } catch (error) {
-    console.error("Upload error:", error);
+    console.error("Upload URL generation error:", error);
     return NextResponse.json(
-      { success: false, error: { code: "SERVER_ERROR", message: "Failed to upload file" } },
+      { success: false, error: { code: "SERVER_ERROR", message: "Failed to generate upload URL" } },
       { status: 500 }
     );
   }

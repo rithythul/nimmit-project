@@ -8,11 +8,13 @@ interface UploadedFile {
   id: string;
   name: string;
   url: string;
+  key: string;
   size: number;
   mimeType: string;
 }
 
 interface FileUploadProps {
+  jobId: string;
   onFilesUploaded?: (files: UploadedFile[]) => void;
   maxFiles?: number;
   maxSizeMB?: number;
@@ -26,6 +28,7 @@ function formatFileSize(bytes: number): string {
 }
 
 export function FileUpload({
+  jobId,
   onFilesUploaded,
   maxFiles = 10,
   maxSizeMB = 50,
@@ -34,6 +37,7 @@ export function FileUpload({
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<Record<string, number>>({});
 
   const uploadFile = async (file: File): Promise<UploadedFile | null> => {
     if (file.size > maxSizeMB * 1024 * 1024) {
@@ -41,22 +45,46 @@ export function FileUpload({
       return null;
     }
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const response = await fetch("/api/upload", {
+      const presignedResponse = await fetch("/api/upload", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          filename: file.name,
+          contentType: file.type,
+          size: file.size,
+          jobId,
+        }),
       });
 
-      const result = await response.json();
+      const presignedResult = await presignedResponse.json();
 
-      if (!response.ok) {
-        throw new Error(result.error?.message || "Upload failed");
+      if (!presignedResponse.ok) {
+        throw new Error(presignedResult.error?.message || "Failed to get upload URL");
       }
 
-      return result.data;
+      const { uploadUrl, key, fileId, filename } = presignedResult.data;
+
+      const uploadResponse = await fetch(uploadUrl, {
+        method: "PUT",
+        body: file,
+        headers: {
+          "Content-Type": file.type,
+        },
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("Failed to upload file to storage");
+      }
+
+      return {
+        id: fileId,
+        name: filename,
+        url: key,
+        key,
+        size: file.size,
+        mimeType: file.type,
+      };
     } catch (error) {
       console.error(`Failed to upload ${file.name}:`, error);
       toast.error(`Failed to upload ${file.name}`);
@@ -79,9 +107,11 @@ export function FileUpload({
 
       const uploadedFiles: UploadedFile[] = [];
       for (const file of filesToUpload) {
+        setUploadProgress((prev) => ({ ...prev, [file.name]: 0 }));
         const uploaded = await uploadFile(file);
         if (uploaded) {
           uploadedFiles.push(uploaded);
+          setUploadProgress((prev) => ({ ...prev, [file.name]: 100 }));
         }
       }
 
@@ -93,8 +123,9 @@ export function FileUpload({
       }
 
       setIsUploading(false);
+      setUploadProgress({});
     },
-    [files, maxFiles, onFilesUploaded]
+    [files, maxFiles, onFilesUploaded, jobId]
   );
 
   const handleDrop = useCallback(
@@ -121,9 +152,30 @@ export function FileUpload({
     onFilesUploaded?.(newFiles);
   };
 
+  const getDownloadUrl = async (key: string): Promise<string | null> => {
+    try {
+      const response = await fetch(`/api/files/${encodeURIComponent(key)}`);
+      const result = await response.json();
+      if (result.success) {
+        return result.data.downloadUrl;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
+
+  const handleViewFile = async (file: UploadedFile) => {
+    const url = await getDownloadUrl(file.key);
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      toast.error("Failed to get file URL");
+    }
+  };
+
   return (
     <div className="space-y-4">
-      {/* Drop Zone */}
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
@@ -147,7 +199,7 @@ export function FileUpload({
           htmlFor="file-upload"
           className="cursor-pointer flex flex-col items-center gap-2"
         >
-          <div className="text-4xl">📁</div>
+          <div className="text-4xl">+</div>
           <p className="font-medium">
             {isUploading ? "Uploading..." : "Drop files here or click to upload"}
           </p>
@@ -157,7 +209,6 @@ export function FileUpload({
         </label>
       </div>
 
-      {/* File List */}
       {files.length > 0 && (
         <div className="space-y-2">
           <p className="text-sm font-medium">Uploaded Files ({files.length})</p>
@@ -170,12 +221,12 @@ export function FileUpload({
                 <div className="flex items-center gap-3 min-w-0">
                   <span className="text-xl">
                     {file.mimeType.startsWith("image/")
-                      ? "🖼️"
+                      ? "[IMG]"
                       : file.mimeType.startsWith("video/")
-                      ? "🎬"
+                      ? "[VID]"
                       : file.mimeType === "application/pdf"
-                      ? "📄"
-                      : "📎"}
+                      ? "[PDF]"
+                      : "[FILE]"}
                   </span>
                   <div className="min-w-0">
                     <p className="font-medium truncate">{file.name}</p>
@@ -185,14 +236,14 @@ export function FileUpload({
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <a
-                    href={file.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline text-sm"
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleViewFile(file)}
+                    className="text-primary"
                   >
                     View
-                  </a>
+                  </Button>
                   <Button
                     variant="ghost"
                     size="sm"

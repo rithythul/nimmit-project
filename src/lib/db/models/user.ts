@@ -2,6 +2,7 @@ import mongoose, { Schema, Model, Document, Types } from "mongoose";
 import type {
   UserRole,
   WorkerAvailability,
+  SkillLevel,
   WorkerProfile,
   ClientProfile,
   UserProfile,
@@ -23,6 +24,14 @@ const WorkerStatsSchema = new Schema(
 const WorkerProfileSchema = new Schema(
   {
     skills: { type: [String], default: [] },
+    skillLevels: {
+      type: Map,
+      of: {
+        type: String,
+        enum: ["junior", "mid", "senior"] as SkillLevel[],
+      },
+      default: {},
+    },
     availability: {
       type: String,
       enum: ["available", "busy", "offline"] as WorkerAvailability[],
@@ -36,12 +45,33 @@ const WorkerProfileSchema = new Schema(
   { _id: false }
 );
 
+const ClientBillingSchema = new Schema(
+  {
+    stripeCustomerId: { type: String },
+    subscriptionId: { type: String },
+    subscriptionTier: {
+      type: String,
+      enum: ["starter", "growth", "scale"],
+    },
+    subscriptionStatus: {
+      type: String,
+      enum: ["active", "canceled", "past_due", "trialing"],
+    },
+    credits: { type: Number, default: 0 },
+    rolloverCredits: { type: Number, default: 0 },
+    billingPeriodStart: { type: Date },
+    billingPeriodEnd: { type: Date },
+  },
+  { _id: false }
+);
+
 const ClientProfileSchema = new Schema(
   {
     company: { type: String },
     preferredWorkerId: { type: Schema.Types.ObjectId, ref: "User" },
     totalJobs: { type: Number, default: 0 },
     totalSpent: { type: Number, default: 0 },
+    billing: { type: ClientBillingSchema, default: () => ({ credits: 0, rolloverCredits: 0 }) },
   },
   { _id: false }
 );

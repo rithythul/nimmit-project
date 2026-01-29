@@ -29,6 +29,14 @@ const WorkerStatsSchema = new mongoose.Schema(
 const WorkerProfileSchema = new mongoose.Schema(
   {
     skills: { type: [String], default: [] },
+    skillLevels: {
+      type: Map,
+      of: {
+        type: String,
+        enum: ["junior", "mid", "senior"],
+      },
+      default: {},
+    },
     availability: {
       type: String,
       enum: ["available", "busy", "offline"],
@@ -210,6 +218,11 @@ async function seed() {
         },
         workerProfile: {
           skills: ["video editing", "motion graphics", "after effects"],
+          skillLevels: {
+            "video editing": "senior",
+            "motion graphics": "mid",
+            "after effects": "senior",
+          },
           availability: "available",
           currentJobCount: 0,
           maxConcurrentJobs: 3,
@@ -228,6 +241,12 @@ async function seed() {
         },
         workerProfile: {
           skills: ["graphic design", "figma", "photoshop", "branding"],
+          skillLevels: {
+            "graphic design": "senior",
+            figma: "senior",
+            photoshop: "mid",
+            branding: "mid",
+          },
           availability: "available",
           currentJobCount: 0,
           maxConcurrentJobs: 3,
@@ -246,6 +265,12 @@ async function seed() {
         },
         workerProfile: {
           skills: ["web development", "react", "nextjs", "typescript"],
+          skillLevels: {
+            "web development": "mid",
+            react: "senior",
+            nextjs: "mid",
+            typescript: "mid",
+          },
           availability: "busy",
           currentJobCount: 2,
           maxConcurrentJobs: 3,

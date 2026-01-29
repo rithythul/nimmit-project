@@ -2,7 +2,7 @@
 // BullMQ Worker Process
 // ===========================================
 
-import { Worker } from "bullmq";
+import { Worker, Job } from "bullmq";
 import { connection } from "../src/lib/queue/connection";
 import {
   processJobAnalysis,
@@ -10,6 +10,7 @@ import {
   processNotification,
   PROCESSOR_CONFIG,
 } from "../src/lib/queue/processors";
+import { addToDLQ, getDLQStats } from "../src/lib/queue/dlq";
 
 // ===========================================
 // Worker Configuration
@@ -76,8 +77,31 @@ const setupWorkerEvents = (worker: Worker, name: string) => {
     console.log(`[${name}] Job ${job.id} completed`);
   });
 
-  worker.on("failed", (job, error) => {
-    console.error(`[${name}] Job ${job?.id} failed:`, error.message);
+  worker.on("failed", async (job: Job | undefined, error: Error) => {
+    if (!job) {
+      console.error(`[${name}] Unknown job failed:`, error.message);
+      return;
+    }
+
+    const maxAttempts = job.opts?.attempts || 3;
+    const isLastAttempt = job.attemptsMade >= maxAttempts;
+
+    console.error(
+      `[${name}] Job ${job.id} failed (attempt ${job.attemptsMade}/${maxAttempts}):`,
+      error.message
+    );
+
+    // If this was the last attempt, add to DLQ
+    if (isLastAttempt) {
+      try {
+        await addToDLQ(job, error.message, error.stack);
+        console.warn(
+          `[${name}] Job ${job.id} exhausted retries, added to Dead Letter Queue`
+        );
+      } catch (dlqError) {
+        console.error(`[${name}] Failed to add job to DLQ:`, dlqError);
+      }
+    }
   });
 
   worker.on("error", (error) => {
@@ -97,10 +121,21 @@ setupWorkerEvents(notificationsWorker, "notifications");
 // Health Check
 // ===========================================
 
-// Heartbeat every 30 seconds to show worker is alive
-setInterval(() => {
+// Heartbeat every 30 seconds to show worker is alive and DLQ status
+setInterval(async () => {
   const now = new Date().toISOString();
-  console.log(`[${now.split("T")[1].split(".")[0]}] Workers heartbeat - OK`);
+  try {
+    const dlqStats = await getDLQStats();
+    if (dlqStats.total > 0) {
+      console.log(
+        `[${now.split("T")[1].split(".")[0]}] Workers heartbeat - OK | DLQ: ${dlqStats.total} jobs`
+      );
+    } else {
+      console.log(`[${now.split("T")[1].split(".")[0]}] Workers heartbeat - OK`);
+    }
+  } catch {
+    console.log(`[${now.split("T")[1].split(".")[0]}] Workers heartbeat - OK`);
+  }
 }, 30000);
 
 // ===========================================

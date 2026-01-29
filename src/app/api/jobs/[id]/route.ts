@@ -11,6 +11,7 @@ import {
   addMessageSchema,
 } from "@/lib/validations/job";
 import { randomUUID } from "crypto";
+import { storeJobContext } from "@/lib/ai/context";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -262,6 +263,19 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       job.feedback = parsed.data.feedback;
 
       await job.save();
+
+      // Store in context cloud (non-blocking)
+      try {
+        await storeJobContext(
+          job._id.toString(),
+          job.clientId.toString(),
+          job.title,
+          job.description,
+          parsed.data.feedback
+        );
+      } catch (contextError) {
+        console.error("Failed to store context (non-critical):", contextError);
+      }
 
       // Update worker stats
       if (job.workerId) {

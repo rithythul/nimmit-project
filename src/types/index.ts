@@ -8,6 +8,8 @@ export type UserRole = "client" | "worker" | "admin";
 
 export type WorkerAvailability = "available" | "busy" | "offline";
 
+export type SkillLevel = "junior" | "mid" | "senior";
+
 export interface WorkerStats {
   completedJobs: number;
   avgRating: number;
@@ -16,6 +18,7 @@ export interface WorkerStats {
 
 export interface WorkerProfile {
   skills: string[];
+  skillLevels: Record<string, SkillLevel>;
   availability: WorkerAvailability;
   currentJobCount: number;
   maxConcurrentJobs: number;
@@ -23,11 +26,27 @@ export interface WorkerProfile {
   bio?: string;
 }
 
+export type SubscriptionTier = "starter" | "growth" | "scale";
+
+export type SubscriptionStatus = "active" | "canceled" | "past_due" | "trialing";
+
+export interface ClientBilling {
+  stripeCustomerId?: string;
+  subscriptionId?: string;
+  subscriptionTier?: SubscriptionTier;
+  subscriptionStatus?: SubscriptionStatus;
+  credits: number;
+  rolloverCredits: number;
+  billingPeriodStart?: Date;
+  billingPeriodEnd?: Date;
+}
+
 export interface ClientProfile {
   company?: string;
   preferredWorkerId?: Types.ObjectId;
   totalJobs: number;
   totalSpent: number;
+  billing?: ClientBilling;
 }
 
 export interface UserProfile {
@@ -102,6 +121,16 @@ export interface JobMessage {
   timestamp: Date;
 }
 
+export type JobComplexity = "simple" | "medium" | "complex";
+
+export interface JobAIAnalysis {
+  requiredSkills: string[];
+  complexity: JobComplexity;
+  estimatedHours: number;
+  confidence: number;
+  analyzedAt: Date;
+}
+
 export interface Job {
   _id: Types.ObjectId;
   clientId: Types.ObjectId;
@@ -124,6 +153,9 @@ export interface Job {
 
   rating?: number;
   feedback?: string;
+
+  aiAnalysis?: JobAIAnalysis;
+  contextFromPastWork?: string;
 
   createdAt: Date;
   updatedAt: Date;

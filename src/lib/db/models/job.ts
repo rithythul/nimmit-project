@@ -7,6 +7,7 @@ import type {
   JobDeliverable,
   JobMessage,
   UserRole,
+  JobAIAnalysis,
 } from "@/types";
 
 // ===========================================
@@ -84,6 +85,9 @@ export interface IJob extends Document {
 
   rating?: number;
   feedback?: string;
+
+  aiAnalysis?: JobAIAnalysis;
+  contextFromPastWork?: string;
 
   createdAt: Date;
   updatedAt: Date;
@@ -168,6 +172,19 @@ const JobSchema = new Schema<IJob>(
 
     rating: { type: Number, min: 1, max: 5 },
     feedback: { type: String, maxlength: 2000 },
+
+    aiAnalysis: {
+      requiredSkills: { type: [String], default: [] },
+      complexity: {
+        type: String,
+        enum: ["simple", "medium", "complex"],
+      },
+      estimatedHours: { type: Number },
+      confidence: { type: Number },
+      analyzedAt: { type: Date },
+    },
+
+    contextFromPastWork: { type: String },
 
     assignedAt: { type: Date },
     startedAt: { type: Date },

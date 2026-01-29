@@ -24,7 +24,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
+
+type SkillLevel = "junior" | "mid" | "senior";
+
+const skillLevelLabels: Record<SkillLevel, string> = {
+  junior: "Junior",
+  mid: "Mid",
+  senior: "Senior",
+};
+
+const skillLevelColors: Record<SkillLevel, string> = {
+  junior: "bg-blue-100 text-blue-800",
+  mid: "bg-yellow-100 text-yellow-800",
+  senior: "bg-green-100 text-green-800",
+};
 
 interface WorkerData {
   _id: string;
@@ -35,6 +57,7 @@ interface WorkerData {
   };
   workerProfile?: {
     skills?: string[];
+    skillLevels?: Record<string, SkillLevel>;
     availability?: "available" | "busy" | "offline";
     currentJobCount?: number;
     maxConcurrentJobs?: number;
@@ -48,6 +71,9 @@ interface WorkerData {
 export default function AdminTeamPage() {
   const [workers, setWorkers] = useState<WorkerData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [editingWorker, setEditingWorker] = useState<WorkerData | null>(null);
+  const [editingSkillLevels, setEditingSkillLevels] = useState<Record<string, SkillLevel>>({});
+  const [savingSkills, setSavingSkills] = useState(false);
 
   useEffect(() => {
     fetchWorkers();
@@ -65,6 +91,54 @@ export default function AdminTeamPage() {
       toast.error("Failed to load team members");
     } finally {
       setLoading(false);
+    }
+  }
+
+  function openSkillLevelEditor(worker: WorkerData) {
+    const skillLevels: Record<string, SkillLevel> = {};
+    worker.workerProfile?.skills?.forEach((skill) => {
+      skillLevels[skill] = worker.workerProfile?.skillLevels?.[skill] || "mid";
+    });
+    setEditingSkillLevels(skillLevels);
+    setEditingWorker(worker);
+  }
+
+  async function saveSkillLevels() {
+    if (!editingWorker) return;
+
+    setSavingSkills(true);
+    try {
+      const response = await fetch(`/api/users/${editingWorker._id}/skills`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ skillLevels: editingSkillLevels }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setWorkers((prev) =>
+          prev.map((w) =>
+            w._id === editingWorker._id
+              ? {
+                  ...w,
+                  workerProfile: {
+                    ...w.workerProfile,
+                    skillLevels: editingSkillLevels,
+                  },
+                }
+              : w
+          )
+        );
+        toast.success("Skill levels updated");
+        setEditingWorker(null);
+      } else {
+        toast.error(data.error?.message || "Failed to update skill levels");
+      }
+    } catch (error) {
+      console.error("Failed to update skill levels:", error);
+      toast.error("Failed to update skill levels");
+    } finally {
+      setSavingSkills(false);
     }
   }
 
@@ -205,17 +279,32 @@ export default function AdminTeamPage() {
                     </TableCell>
                     <TableCell>{worker.email}</TableCell>
                     <TableCell>
-                      <div className="flex flex-wrap gap-1">
-                        {worker.workerProfile?.skills?.slice(0, 3).map((skill) => (
-                          <Badge key={skill} variant="secondary" className="text-xs">
-                            {skill}
-                          </Badge>
-                        ))}
+                      <div className="flex flex-wrap gap-1 items-center">
+                        {worker.workerProfile?.skills?.slice(0, 3).map((skill) => {
+                          const level = worker.workerProfile?.skillLevels?.[skill] || "mid";
+                          return (
+                            <Badge
+                              key={skill}
+                              className={`text-xs ${skillLevelColors[level]}`}
+                              title={`${skill} - ${skillLevelLabels[level]}`}
+                            >
+                              {skill}
+                            </Badge>
+                          );
+                        })}
                         {(worker.workerProfile?.skills?.length || 0) > 3 && (
                           <Badge variant="outline" className="text-xs">
                             +{(worker.workerProfile?.skills?.length || 0) - 3}
                           </Badge>
                         )}
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 px-2 text-xs"
+                          onClick={() => openSkillLevelEditor(worker)}
+                        >
+                          Edit
+                        </Button>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -281,6 +370,69 @@ export default function AdminTeamPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Skill Level Editor Dialog */}
+      <Dialog open={!!editingWorker} onOpenChange={() => setEditingWorker(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>
+              Edit Skill Levels - {editingWorker?.profile.firstName}{" "}
+              {editingWorker?.profile.lastName}
+            </DialogTitle>
+            <DialogDescription>
+              Set the proficiency level for each skill
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {editingWorker?.workerProfile?.skills?.map((skill) => (
+              <div key={skill} className="flex items-center justify-between gap-4">
+                <span className="font-medium">{skill}</span>
+                <Select
+                  value={editingSkillLevels[skill] || "mid"}
+                  onValueChange={(value) =>
+                    setEditingSkillLevels((prev) => ({
+                      ...prev,
+                      [skill]: value as SkillLevel,
+                    }))
+                  }
+                >
+                  <SelectTrigger className="w-[120px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="junior">
+                      <span className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-blue-500" />
+                        Junior
+                      </span>
+                    </SelectItem>
+                    <SelectItem value="mid">
+                      <span className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-yellow-500" />
+                        Mid
+                      </span>
+                    </SelectItem>
+                    <SelectItem value="senior">
+                      <span className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-green-500" />
+                        Senior
+                      </span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setEditingWorker(null)}>
+              Cancel
+            </Button>
+            <Button onClick={saveSkillLevels} disabled={savingSkills}>
+              {savingSkills ? "Saving..." : "Save Changes"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
