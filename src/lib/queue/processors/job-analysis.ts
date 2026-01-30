@@ -4,6 +4,7 @@ import { Job as JobModel } from "@/lib/db/models";
 import { analyzeJob } from "@/lib/ai/routing";
 import { getJobContext, formatContextForWorker } from "@/lib/ai/context";
 import { addAutoAssignJob } from "..";
+import { logger } from "@/lib/logger";
 import type { JobAnalysisJobData } from "../types";
 
 /**
@@ -12,7 +13,7 @@ import type { JobAnalysisJobData } from "../types";
 export async function processJobAnalysis(job: Job<JobAnalysisJobData>) {
   const { jobId, title, description, category, clientId } = job.data;
 
-  console.log(`[JobAnalysis] Starting analysis for job ${jobId}`);
+  logger.info("JobAnalysis", `Starting analysis for job ${jobId}`);
 
   try {
     await connectDB();
@@ -23,20 +24,20 @@ export async function processJobAnalysis(job: Job<JobAnalysisJobData>) {
     });
 
     // Step 1: Analyze job with AI
-    console.log(`[JobAnalysis] Analyzing job ${jobId} with AI...`);
+    logger.debug("JobAnalysis", `Analyzing job ${jobId} with AI...`);
     const analysis = await analyzeJob(title, description, category);
 
     // Step 2: Get relevant context from past work
     let contextFromPastWork = "";
     try {
-      console.log(`[JobAnalysis] Retrieving context for job ${jobId}...`);
+      logger.debug("JobAnalysis", `Retrieving context for job ${jobId}...`);
       const contextItems = await getJobContext(clientId, title, description, 5);
       if (contextItems.length > 0) {
         contextFromPastWork = formatContextForWorker(contextItems);
-        console.log(`[JobAnalysis] Found ${contextItems.length} relevant context items`);
+        logger.info("JobAnalysis", `Found ${contextItems.length} relevant context items`);
       }
     } catch (contextError) {
-      console.error(`[JobAnalysis] Context retrieval failed for job ${jobId}:`, contextError);
+      logger.error("JobAnalysis", `Context retrieval failed for job ${jobId}`, { error: String(contextError) });
       // Non-critical error, continue without context
     }
 
@@ -53,10 +54,10 @@ export async function processJobAnalysis(job: Job<JobAnalysisJobData>) {
       status: "pending", // Ready for assignment
     });
 
-    console.log(
-      `[JobAnalysis] Job ${jobId} analyzed. Complexity: ${analysis.complexity}, ` +
-      `Skills: ${analysis.requiredSkills.join(", ")}`
-    );
+    logger.info("JobAnalysis", `Job ${jobId} analyzed`, {
+      complexity: analysis.complexity,
+      skills: analysis.requiredSkills.join(", "),
+    });
 
     // Step 4: Queue auto-assignment job
     await addAutoAssignJob({ jobId, title, description, category });
@@ -70,7 +71,7 @@ export async function processJobAnalysis(job: Job<JobAnalysisJobData>) {
       },
     };
   } catch (error) {
-    console.error(`[JobAnalysis] Error processing job ${jobId}:`, error);
+    logger.error("JobAnalysis", `Error processing job ${jobId}`, { error: String(error) });
 
     // Update job status to indicate failure
     try {
@@ -78,7 +79,7 @@ export async function processJobAnalysis(job: Job<JobAnalysisJobData>) {
         status: "pending", // Keep in pending for manual assignment
       });
     } catch (dbError) {
-      console.error(`[JobAnalysis] Failed to update job status:`, dbError);
+      logger.error("JobAnalysis", "Failed to update job status", { error: String(dbError) });
     }
 
     throw error;

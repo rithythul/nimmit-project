@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
 import { User } from "@/lib/db/models";
 import { constructWebhookEvent, SUBSCRIPTION_TIERS } from "@/lib/payments/stripe";
+import { logger } from "@/lib/logger";
 import type Stripe from "stripe";
 
 // POST /api/payments/webhook - Handle Stripe webhooks
@@ -54,12 +55,12 @@ export async function POST(request: NextRequest) {
       }
 
       default:
-        console.log(`Unhandled event type: ${event.type}`);
+        logger.debug("Webhook", `Unhandled event type: ${event.type}`);
     }
 
     return NextResponse.json({ received: true });
   } catch (error) {
-    console.error("Webhook error:", error);
+    logger.error("Webhook", "Webhook handler failed", { error: String(error) });
     return NextResponse.json(
       { error: "Webhook handler failed" },
       { status: 400 }

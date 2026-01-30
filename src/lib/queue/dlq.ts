@@ -6,6 +6,7 @@
 
 import { Job, Queue } from "bullmq";
 import { connection } from "./connection";
+import { logger } from "@/lib/logger";
 import type { QueueJobData } from "./types";
 
 // ===========================================
@@ -117,9 +118,7 @@ export async function addToDLQ(
     jobId: `dlq-${job.queueName}-${job.id}`,
   });
 
-  console.log(
-    `[DLQ] Added job ${job.id} from ${job.queueName} to DLQ. Reason: ${dlqEntry.dlqReason}`
-  );
+  logger.info("DLQ", `Added job ${job.id} from ${job.queueName} to DLQ`, { reason: dlqEntry.dlqReason });
 
   return dlqJob.id || "";
 }
@@ -216,7 +215,7 @@ export async function removeDLQEntry(dlqJobId: string): Promise<boolean> {
   if (!job) return false;
 
   await job.remove();
-  console.log(`[DLQ] Removed entry ${dlqJobId}`);
+  logger.info("DLQ", `Removed entry ${dlqJobId}`);
   return true;
 }
 
@@ -255,14 +254,12 @@ export async function retryDLQEntry(
     // Remove from DLQ after successful re-queue
     await job.remove();
 
-    console.log(
-      `[DLQ] Retried job ${entry.id} -> new job ${newJob.id} in ${entry.queueName}`
-    );
+    logger.info("DLQ", `Retried job ${entry.id} -> new job ${newJob.id} in ${entry.queueName}`);
 
     return { success: true, newJobId: newJob.id || undefined };
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    console.error(`[DLQ] Failed to retry job ${entry.id}:`, errMsg);
+    logger.error("DLQ", `Failed to retry job ${entry.id}`, { error: errMsg });
     return { success: false, error: errMsg };
   }
 }
@@ -301,7 +298,7 @@ export async function bulkRetryDLQ(
     }
   }
 
-  console.log(`[DLQ] Bulk retry completed: ${retried} retried, ${failed} failed`);
+  logger.info("DLQ", `Bulk retry completed`, { retried, failed });
 
   return { retried, failed, errors };
 }
@@ -324,7 +321,7 @@ export async function purgeDLQ(olderThanDays: number = 30): Promise<number> {
     }
   }
 
-  console.log(`[DLQ] Purged ${purged} entries older than ${olderThanDays} days`);
+  logger.info("DLQ", `Purged entries older than ${olderThanDays} days`, { purged });
 
   return purged;
 }

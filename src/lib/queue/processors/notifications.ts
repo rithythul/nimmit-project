@@ -1,5 +1,6 @@
 import { Job } from "bullmq";
 import { Resend } from "resend";
+import { logger } from "@/lib/logger";
 import type { NotificationJobData, NotificationType } from "../types";
 
 // ===========================================
@@ -129,7 +130,7 @@ function getEmailTemplate(type: NotificationType, data: NotificationJobData["dat
 export async function processNotification(job: Job<NotificationJobData>) {
   const { userId, email, type, data } = job.data;
 
-  console.log(`[Notification] Processing ${type} notification for user ${userId} (${email})`);
+  logger.info("Notification", `Processing ${type} notification for user ${userId}`, { email });
 
   try {
     // Get email template
@@ -147,20 +148,21 @@ export async function processNotification(job: Job<NotificationJobData>) {
       });
 
       if (result.error) {
-        console.error(`[Notification] Resend error:`, result.error);
+        logger.error("Notification", "Resend error", { error: result.error.message });
         throw new Error(`Resend error: ${result.error.message}`);
       }
 
-      console.log(`[Notification] Email sent to ${email}, ID: ${result.data?.id}`);
+      logger.info("Notification", `Email sent to ${email}`, { emailId: result.data?.id });
     } else {
       // No API key configured - log instead
-      console.log(`[Notification] EMAIL_API_KEY not configured, logging email:`);
-      console.log(`[Notification] To: ${email}`);
-      console.log(`[Notification] Subject: ${template.subject}`);
-      console.log(`[Notification] HTML length: ${template.html.length} characters`);
+      logger.info("Notification", "EMAIL_API_KEY not configured, email logged only", {
+        to: email,
+        subject: template.subject,
+        htmlLength: template.html.length,
+      });
     }
 
-    console.log(`[Notification] ${type} notification processed successfully`);
+    logger.debug("Notification", `${type} notification processed successfully`);
 
     return {
       success: true,
@@ -169,7 +171,7 @@ export async function processNotification(job: Job<NotificationJobData>) {
       sent: !!client,
     };
   } catch (error) {
-    console.error(`[Notification] Error processing ${type} notification for ${email}:`, error);
+    logger.error("Notification", `Error processing ${type} notification for ${email}`, { error: String(error) });
     throw error;
   }
 }

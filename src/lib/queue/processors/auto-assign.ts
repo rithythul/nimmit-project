@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db/connection";
 import { Job as JobModel, User as UserModel } from "@/lib/db/models";
 import { autoAssignJob } from "@/lib/ai/routing";
 import { addNotificationJob } from "..";
+import { logger } from "@/lib/logger";
 import type { AutoAssignJobData } from "../types";
 
 // Helper to safely extract client name from populated document
@@ -20,7 +21,7 @@ function getClientName(clientId: unknown): string {
 export async function processAutoAssign(job: Job<AutoAssignJobData>) {
   const { jobId, title, description, category } = job.data;
 
-  console.log(`[AutoAssign] Starting assignment for job ${jobId}`);
+  logger.info("AutoAssign", `Starting assignment for job ${jobId}`);
 
   try {
     await connectDB();
@@ -36,12 +37,12 @@ export async function processAutoAssign(job: Job<AutoAssignJobData>) {
 
     // Skip if already assigned
     if (jobDoc.workerId) {
-      console.log(`[AutoAssign] Job ${jobId} already assigned, skipping`);
+      logger.info("AutoAssign", `Job ${jobId} already assigned, skipping`);
       return { success: true, message: "Job already assigned" };
     }
 
     // Attempt auto-assignment
-    console.log(`[AutoAssign] Running auto-assignment for job ${jobId}...`);
+    logger.debug("AutoAssign", `Running auto-assignment for job ${jobId}...`);
     const result = await autoAssignJob(title, description, category);
 
     if (result.assigned && result.workerId) {
@@ -70,13 +71,12 @@ export async function processAutoAssign(job: Job<AutoAssignJobData>) {
             clientName: getClientName(jobDoc.clientId),
           },
         });
-        console.log(`[AutoAssign] Notification queued for worker ${worker.email}`);
+        logger.debug("AutoAssign", `Notification queued for worker ${worker.email}`);
       }
 
-      console.log(
-        `[AutoAssign] Job ${jobId} assigned to ${result.workerName} ` +
-        `(score: ${(result.score || 0 * 100).toFixed(0)}%)`
-      );
+      logger.info("AutoAssign", `Job ${jobId} assigned to ${result.workerName}`, {
+        score: `${((result.score || 0) * 100).toFixed(0)}%`,
+      });
 
       return {
         success: true,
@@ -88,7 +88,7 @@ export async function processAutoAssign(job: Job<AutoAssignJobData>) {
       };
     }
 
-    console.log(`[AutoAssign] Auto-assignment skipped: ${result.reason}`);
+    logger.info("AutoAssign", `Auto-assignment skipped`, { reason: result.reason });
 
     return {
       success: true,
@@ -96,7 +96,7 @@ export async function processAutoAssign(job: Job<AutoAssignJobData>) {
       reason: result.reason,
     };
   } catch (error) {
-    console.error(`[AutoAssign] Error processing job ${jobId}:`, error);
+    logger.error("AutoAssign", `Error processing job ${jobId}`, { error: String(error) });
 
     // Keep job in pending status for manual assignment
     try {
@@ -104,7 +104,7 @@ export async function processAutoAssign(job: Job<AutoAssignJobData>) {
         status: "pending",
       });
     } catch (dbError) {
-      console.error(`[AutoAssign] Failed to update job status:`, dbError);
+      logger.error("AutoAssign", "Failed to update job status", { error: String(dbError) });
     }
 
     throw error;

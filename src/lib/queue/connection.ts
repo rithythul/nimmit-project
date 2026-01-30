@@ -1,4 +1,5 @@
 import IORedis from "ioredis";
+import { logger } from "@/lib/logger";
 
 // ===========================================
 // Redis Connection Configuration
@@ -18,21 +19,21 @@ const connection = new IORedis(REDIS_URL, {
 
 // Connection error handling
 connection.on("error", (error) => {
-  console.error("[Queue] Redis connection error:", error);
+  logger.error("Queue", "Redis connection error", { error: String(error) });
 });
 
 connection.on("connect", () => {
-  console.log("[Queue] Redis connected");
+  logger.info("Queue", "Redis connected");
 });
 
 connection.on("close", () => {
-  console.log("[Queue] Redis connection closed");
+  logger.info("Queue", "Redis connection closed");
 });
 
 // Graceful shutdown
 const close = async () => {
   await connection.quit();
-  console.log("[Queue] Redis connection closed gracefully");
+  logger.info("Queue", "Redis connection closed gracefully");
 };
 
 // ===========================================
