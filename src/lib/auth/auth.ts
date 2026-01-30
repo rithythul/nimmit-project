@@ -5,6 +5,7 @@ import { connectDB } from "@/lib/db/connection";
 import { User } from "@/lib/db/models";
 import { loginSchema } from "@/lib/validations/user";
 import { authConfig } from "./config";
+import KIDProvider from "./kid-provider";
 import type { User as NextAuthUser } from "next-auth";
 
 /**
@@ -14,6 +15,12 @@ import type { User as NextAuthUser } from "next-auth";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
+    // KID (KOOMPI ID) OAuth
+    KIDProvider({
+      clientId: process.env.KID_CLIENT_ID!,
+      clientSecret: process.env.KID_CLIENT_SECRET!,
+    }),
+    // Credentials (Email/Password)
     Credentials({
       name: "credentials",
       credentials: {

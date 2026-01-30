@@ -78,6 +78,31 @@ function LoginForm() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-5 pt-4">
+          {/* KID OAuth Button */}
+          <Button
+            type="button"
+            onClick={() => signIn("kid", { callbackUrl })}
+            className="w-full h-12 text-base font-medium bg-[#2563eb] hover:bg-[#1d4ed8] text-white
+                       shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-3"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+            </svg>
+            Sign in with KOOMPI ID
+          </Button>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-[var(--nimmit-border)]" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-[var(--nimmit-bg-elevated)] px-3 text-[var(--nimmit-text-tertiary)]">
+                Or continue with email
+              </span>
+            </div>
+          </div>
+
           {/* Error Alert */}
           {error && (
             <div className="rounded-lg bg-[var(--nimmit-error-bg)] border border-[var(--nimmit-error)]/20 p-4 animate-fade-in">

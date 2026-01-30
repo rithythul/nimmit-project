@@ -9,15 +9,16 @@
   --color-foreground: var(--foreground);
 
   /* Nimmit brand colors */
-  --color-nimmit-cream: #FAF9F6;
-  --color-nimmit-cream-dark: #F5F3EF;
-  --color-nimmit-cream-darker: #EDEAE3;
-  --color-nimmit-terracotta: #E07A5F;
-  --color-nimmit-terracotta-dark: #D4694D;
-  --color-nimmit-slate: #3D405B;
-  --color-nimmit-slate-dark: #2D3045;
-  --color-nimmit-sage: #81B29A;
-  --color-nimmit-sage-dark: #6FA088;
+  /* Nimmit brand colors (mapped to design tokens) */
+  --color-nimmit-cream: var(--nimmit-bg-primary);
+  --color-nimmit-cream-dark: var(--nimmit-bg-secondary);
+  --color-nimmit-cream-darker: var(--nimmit-bg-tertiary);
+  --color-nimmit-terracotta: var(--nimmit-accent-primary);
+  --color-nimmit-terracotta-dark: var(--nimmit-accent-primary-hover);
+  --color-nimmit-slate: var(--nimmit-accent-secondary);
+  --color-nimmit-slate-dark: var(--nimmit-accent-secondary-hover);
+  --color-nimmit-sage: var(--nimmit-accent-tertiary);
+  --color-nimmit-sage-dark: var(--nimmit-accent-tertiary-hover);
 
   /* Typography */
   --font-display: var(--nimmit-font-display);
@@ -89,14 +90,18 @@
   }
 
   /* Serif display headings */
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--nimmit-font-display);
     line-height: var(--nimmit-leading-tight);
     letter-spacing: var(--nimmit-tracking-tight);
     color: var(--nimmit-text-primary);
   }
 
-  h4, h5, h6 {
+  h4,
+  h5,
+  h6 {
     font-family: var(--nimmit-font-body);
     font-weight: 600;
     line-height: var(--nimmit-leading-snug);
@@ -137,6 +142,7 @@
 }
 
 @layer components {
+
   /* Container with max-width and padding */
   .container-nimmit {
     width: 100%;
@@ -223,11 +229,23 @@
 }
 
 @layer utilities {
+
   /* Spacing utilities using design tokens */
-  .gap-nimmit-sm { gap: var(--nimmit-space-2); }
-  .gap-nimmit-md { gap: var(--nimmit-space-4); }
-  .gap-nimmit-lg { gap: var(--nimmit-space-6); }
-  .gap-nimmit-xl { gap: var(--nimmit-space-8); }
+  .gap-nimmit-sm {
+    gap: var(--nimmit-space-2);
+  }
+
+  .gap-nimmit-md {
+    gap: var(--nimmit-space-4);
+  }
+
+  .gap-nimmit-lg {
+    gap: var(--nimmit-space-6);
+  }
+
+  .gap-nimmit-xl {
+    gap: var(--nimmit-space-8);
+  }
 
   /* Section spacing */
   .section-padding {

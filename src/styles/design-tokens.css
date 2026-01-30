@@ -9,59 +9,86 @@
 
 :root {
   /* === Color Palette === */
+  /* Anthropic-inspired warm cream aesthetic */
 
-  /* Backgrounds - Warm cream tones */
-  --nimmit-bg-primary: #FAF9F6;
-  --nimmit-bg-secondary: #F5F3EF;
-  --nimmit-bg-tertiary: #EDEAE3;
-  --nimmit-bg-elevated: #FFFFFF;
+  /* Backgrounds */
+  --nimmit-bg-primary: #faf8f5;
+  /* Warm cream base */
+  --nimmit-bg-secondary: #f0ebe5;
+  /* Slightly darker cream */
+  --nimmit-bg-tertiary: #e6dfd9;
+  /* Deep cream/taupe */
+  --nimmit-bg-elevated: #ffffff;
+  /* Pure white for cards */
 
   /* Accent Colors */
-  --nimmit-accent-primary: #E07A5F;      /* Warm terracotta */
-  --nimmit-accent-primary-hover: #D4694D;
-  --nimmit-accent-primary-light: #F4D1C7;
-  --nimmit-accent-secondary: #3D405B;    /* Deep slate */
-  --nimmit-accent-secondary-hover: #2D3045;
-  --nimmit-accent-tertiary: #81B29A;     /* Sage green */
-  --nimmit-accent-tertiary-hover: #6FA088;
+  --nimmit-accent-primary: #da552f;
+  /* Burnt Orange / Rust */
+  --nimmit-accent-primary-hover: #b03d1e;
+  --nimmit-accent-primary-light: #f7dcd5;
+  --nimmit-accent-secondary: #1a1918;
+  /* Near-black charcoal */
+  --nimmit-accent-secondary-hover: #000000;
+  --nimmit-accent-tertiary: #d0c8c0;
+  /* Warm grey/taupe */
+  --nimmit-accent-tertiary-hover: #b8afa6;
 
   /* Text Colors */
-  --nimmit-text-primary: #1A1A1A;
-  --nimmit-text-secondary: #6B6B6B;
-  --nimmit-text-tertiary: #9B9B9B;
-  --nimmit-text-inverse: #FFFFFF;
+  --nimmit-text-primary: #1a1918;
+  /* Warm charcoal (almost black) */
+  --nimmit-text-secondary: #5c5550;
+  /* Warm dark grey */
+  --nimmit-text-tertiary: #857f7a;
+  /* Muted warm grey */
+  --nimmit-text-inverse: #ffffff;
 
   /* Border Colors */
-  --nimmit-border: #E8E5DE;
-  --nimmit-border-hover: #D8D4CC;
-  --nimmit-border-focus: #E07A5F;
+  --nimmit-border: #e6e1db;
+  /* Subtle warm border */
+  --nimmit-border-hover: #d1cdc7;
+  --nimmit-border-focus: #da552f;
 
-  /* Status Colors (warm palette) */
-  --nimmit-success: #81B29A;
-  --nimmit-success-bg: #E8F4ED;
-  --nimmit-warning: #E9C46A;
-  --nimmit-warning-bg: #FCF5E3;
-  --nimmit-error: #C75146;
-  --nimmit-error-bg: #FBEAE9;
-  --nimmit-info: #5B8BA0;
-  --nimmit-info-bg: #E8F1F5;
+  /* Status Colors */
+  --nimmit-success: #3d7a5d;
+  /* Deep forest green */
+  --nimmit-success-bg: #ecf5ef;
+  --nimmit-warning: #9e6c00;
+  /* Deep ochre */
+  --nimmit-warning-bg: #fff8e6;
+  --nimmit-error: #c92a2a;
+  /* Deep red */
+  --nimmit-error-bg: #fff0f0;
+  --nimmit-info: #2b5f82;
+  /* Muted blue */
+  --nimmit-info-bg: #eff6fa;
 
   /* === Typography === */
-  --nimmit-font-display: var(--font-newsreader), Georgia, 'Times New Roman', serif;
-  --nimmit-font-body: var(--font-source-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --nimmit-font-mono: var(--font-jetbrains), 'Fira Code', Consolas, monospace;
+  /* Anthropic style: Sans for headings, Serif for body */
+  --nimmit-font-display: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+  --nimmit-font-body: var(--font-source-serif), 'Source Serif 4', Georgia, serif;
+  --nimmit-font-mono: var(--font-jetbrains), 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Font Sizes */
-  --nimmit-text-xs: 0.75rem;      /* 12px */
-  --nimmit-text-sm: 0.875rem;     /* 14px */
-  --nimmit-text-base: 1rem;       /* 16px */
-  --nimmit-text-lg: 1.125rem;     /* 18px */
-  --nimmit-text-xl: 1.25rem;      /* 20px */
-  --nimmit-text-2xl: 1.5rem;      /* 24px */
-  --nimmit-text-3xl: 1.875rem;    /* 30px */
-  --nimmit-text-4xl: 2.25rem;     /* 36px */
-  --nimmit-text-5xl: 3rem;        /* 48px */
-  --nimmit-text-6xl: 3.75rem;     /* 60px */
+  --nimmit-text-xs: 0.75rem;
+  /* 12px */
+  --nimmit-text-sm: 0.875rem;
+  /* 14px */
+  --nimmit-text-base: 1rem;
+  /* 16px */
+  --nimmit-text-lg: 1.125rem;
+  /* 18px */
+  --nimmit-text-xl: 1.25rem;
+  /* 20px */
+  --nimmit-text-2xl: 1.5rem;
+  /* 24px */
+  --nimmit-text-3xl: 2rem;
+  /* 32px */
+  --nimmit-text-4xl: 2.5rem;
+  /* 40px */
+  --nimmit-text-5xl: 3.5rem;
+  /* 56px */
+  --nimmit-text-6xl: 4.5rem;
+  /* 72px */
 
   /* Line Heights */
   --nimmit-leading-tight: 1.2;
@@ -76,18 +103,30 @@
 
   /* === Spacing === */
   --nimmit-space-0: 0;
-  --nimmit-space-1: 0.25rem;      /* 4px */
-  --nimmit-space-2: 0.5rem;       /* 8px */
-  --nimmit-space-3: 0.75rem;      /* 12px */
-  --nimmit-space-4: 1rem;         /* 16px */
-  --nimmit-space-5: 1.25rem;      /* 20px */
-  --nimmit-space-6: 1.5rem;       /* 24px */
-  --nimmit-space-8: 2rem;         /* 32px */
-  --nimmit-space-10: 2.5rem;      /* 40px */
-  --nimmit-space-12: 3rem;        /* 48px */
-  --nimmit-space-16: 4rem;        /* 64px */
-  --nimmit-space-20: 5rem;        /* 80px */
-  --nimmit-space-24: 6rem;        /* 96px */
+  --nimmit-space-1: 0.25rem;
+  /* 4px */
+  --nimmit-space-2: 0.5rem;
+  /* 8px */
+  --nimmit-space-3: 0.75rem;
+  /* 12px */
+  --nimmit-space-4: 1rem;
+  /* 16px */
+  --nimmit-space-5: 1.25rem;
+  /* 20px */
+  --nimmit-space-6: 1.5rem;
+  /* 24px */
+  --nimmit-space-8: 2rem;
+  /* 32px */
+  --nimmit-space-10: 2.5rem;
+  /* 40px */
+  --nimmit-space-12: 3rem;
+  /* 48px */
+  --nimmit-space-16: 4rem;
+  /* 64px */
+  --nimmit-space-20: 5rem;
+  /* 80px */
+  --nimmit-space-24: 6rem;
+  /* 96px */
 
   /* === Border Radius === */
   --nimmit-radius-sm: 6px;
@@ -267,8 +306,13 @@
 
 /* Animation utilities */
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-up {
@@ -276,6 +320,7 @@
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -287,6 +332,7 @@
     opacity: 0;
     transform: translateY(-16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -298,6 +344,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -309,6 +356,7 @@
     opacity: 0;
     transform: translateX(16px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -316,8 +364,15 @@
 }
 
 @keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .animate-fade-in {
@@ -345,12 +400,29 @@
 }
 
 /* Staggered animations */
-.stagger-1 { animation-delay: 50ms; }
-.stagger-2 { animation-delay: 100ms; }
-.stagger-3 { animation-delay: 150ms; }
-.stagger-4 { animation-delay: 200ms; }
-.stagger-5 { animation-delay: 250ms; }
-.stagger-6 { animation-delay: 300ms; }
+.stagger-1 {
+  animation-delay: 50ms;
+}
+
+.stagger-2 {
+  animation-delay: 100ms;
+}
+
+.stagger-3 {
+  animation-delay: 150ms;
+}
+
+.stagger-4 {
+  animation-delay: 200ms;
+}
+
+.stagger-5 {
+  animation-delay: 250ms;
+}
+
+.stagger-6 {
+  animation-delay: 300ms;
+}
 
 /* Focus ring utility */
 .focus-ring {
@@ -365,19 +437,22 @@
 
 /* Skeleton loading */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--nimmit-bg-secondary) 0%,
-    var(--nimmit-bg-tertiary) 50%,
-    var(--nimmit-bg-secondary) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--nimmit-bg-secondary) 0%,
+      var(--nimmit-bg-tertiary) 50%,
+      var(--nimmit-bg-secondary) 100%);
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Smooth scrolling */

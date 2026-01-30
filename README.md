@@ -9,10 +9,10 @@ A tech-enabled platform where **Nimmit is the service**. Clients submit work to 
 ## Project Status
 
 **Phase:** MVP Development
-**Current Sprint:** Security & Foundation
-**Last Updated:** January 25, 2026
+**Current Sprint:** AI & Payments Integration
+**Last Updated:** January 30, 2026
 
-See [Progress Report](./docs/progress_report.md) | See [Task Backlog](./docs/tasks.md)
+See [Task Backlog](./docs/tasks.md)
 
 ---
 
@@ -43,7 +43,6 @@ See [Progress Report](./docs/progress_report.md) | See [Task Backlog](./docs/tas
 - [Product Vision](./docs/product_vision.md) - UX and workflow design
 - [Technical Design](./docs/design.md) - Architecture and database schemas
 - [Market Research](./docs/market_research.md) - Target market and positioning
-- [Progress Report](./docs/progress_report.md) - Current status and gaps
 - [Task Backlog](./docs/tasks.md) - Prioritized development tasks
 
 ---
@@ -95,33 +94,25 @@ nimmit/
 
 ### ✅ Completed
 - [x] User authentication (client, worker, admin)
-- [x] Job creation and assignment (manual)
-- [x] Basic file upload
+- [x] Job creation and assignment (manual + AI)
+- [x] Secure file storage (Cloudflare R2)
 - [x] In-job messaging
 - [x] Role-based dashboards
 - [x] Job status workflow
+- [x] Worker skill levels
+- [x] AI job routing (auto-assignment)
+- [x] Context Cloud v1 (Pinecone)
 
-### 🔴 Sprint 1: Security & Foundation (Current)
-- [ ] Secure file storage (R2 migration)
-- [ ] Worker skill levels
-- [ ] File validation & virus scanning
-
-### 🟠 Sprint 2: AI & Automation
-- [ ] AI job routing (auto-assignment)
-- [ ] QA automation for deliverables
-
-### 🟡 Sprint 3: Revenue & Scale
+### 🔄 In Progress
 - [ ] Stripe payment integration
-- [ ] Real-time notifications
-
-### 🟢 Sprint 4: The Moat
-- [ ] Context Cloud v1 (vector DB)
+- [ ] Real-time notifications (WebSocket)
 - [ ] Email notifications
 
-### Backlog
+### 📋 Backlog
+- [ ] QA automation for deliverables
+- [ ] File validation & virus scanning
 - [ ] Admin analytics dashboard
 - [ ] Audit logging
-- [ ] Mobile responsive improvements
 
 See [docs/tasks.md](./docs/tasks.md) for detailed specs.
 

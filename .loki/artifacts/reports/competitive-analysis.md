@@ -39,6 +39,7 @@ Nimmit occupies a unique position in the virtual work services market. Unlike tr
 2. **AI-Powered Routing** - Automatic skill/availability matching (vs manual selection)
 3. **Multi-Service Pools** - Video + Design + Web + Ops in one platform (vs siloed services)
 4. **Overnight Magic** - Cambodia timezone advantage for US clients
+5. **Voice-to-Task Capture** - Record voice on mobile → AI extracts structured tasks (vs typing-only portals)
 
 ### 🟡 Gaps to Address
 
@@ -60,13 +61,14 @@ Nimmit occupies a unique position in the virtual work services market. Unlike tr
 
 ## Recommended Roadmap Additions
 
-### Priority 1 (Q1)
+### Priority 1 (Q1) - Core Mobile Experience
+- [ ] **On-the-go task submission** (mobile-optimized briefing flow)
+- [ ] Mobile-responsive PWA with push notifications
+- [ ] **Voice-to-Task**: Record voice → AI transcription → Extract structured task
 - [ ] Add "Nimmit Active" status indicator in dashboard
 - [ ] Create public pricing page
-- [ ] Implement AI-powered "Brand Bible" for each client
 
 ### Priority 2 (Q2)
-- [ ] Mobile-responsive PWA for client dashboard
 - [ ] Integration with Storyblocks for stock assets
 - [ ] Real-time job progress indicators
 

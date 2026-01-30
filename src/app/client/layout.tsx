@@ -8,7 +8,7 @@ export default function ClientLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 bg-gray-50">
+      <main className="flex-1 bg-[var(--nimmit-bg-primary)]">
         <div className="container mx-auto px-4 py-8">{children}</div>
       </main>
     </div>

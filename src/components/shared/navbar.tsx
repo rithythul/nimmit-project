@@ -24,11 +24,12 @@ export function Navbar() {
   }
 
   const user = session.user;
-  const initials = user.name
+  const initials = (user.name || user.email || "U")
     .split(" ")
     .map((n) => n[0])
     .join("")
-    .toUpperCase();
+    .toUpperCase()
+    .slice(0, 2);
 
   const dashboardPath =
     user.role === "admin"
@@ -157,8 +158,8 @@ export function Navbar() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${item.isActive(pathname)
-                    ? "bg-[var(--nimmit-accent-primary)]/10 text-[var(--nimmit-accent-primary)]"
-                    : "text-[var(--nimmit-text-secondary)] hover:bg-[var(--nimmit-bg-secondary)]"
+                  ? "bg-[var(--nimmit-accent-primary)]/10 text-[var(--nimmit-accent-primary)]"
+                  : "text-[var(--nimmit-text-secondary)] hover:bg-[var(--nimmit-bg-secondary)]"
                   }`}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,8 +190,8 @@ function NavLink({
     <Link
       href={href}
       className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${active
-          ? "bg-[var(--nimmit-accent-primary)]/10 text-[var(--nimmit-accent-primary)]"
-          : "text-[var(--nimmit-text-secondary)] hover:text-[var(--nimmit-text-primary)] hover:bg-[var(--nimmit-bg-secondary)]"
+        ? "bg-[var(--nimmit-accent-primary)]/10 text-[var(--nimmit-accent-primary)]"
+        : "text-[var(--nimmit-text-secondary)] hover:text-[var(--nimmit-text-primary)] hover:bg-[var(--nimmit-bg-secondary)]"
         }`}
     >
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

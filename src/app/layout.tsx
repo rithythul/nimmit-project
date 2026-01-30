@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
-import { Newsreader, Source_Sans_3, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import { SessionProvider } from "@/components/providers/session-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-// Display font - elegant serif for headings
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+// Display font - Modern sans-serif (Anthropic style)
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "700"],
 });
 
-// Body font - clean and readable
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+// Body font - Elegant serif (Anthropic style)
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
 });
 
-// Mono font - for code and technical content
+// Mono font - Technical precision
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
@@ -46,13 +45,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${sourceSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         {/* Preconnect for faster font loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <SessionProvider>
           {children}
           <Toaster

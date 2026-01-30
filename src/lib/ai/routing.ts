@@ -74,6 +74,10 @@ const COMPLEXITY_MIN_LEVEL: Record<string, SkillLevel> = {
 // Job Analysis
 // ===========================================
 
+import { STANDARDIZED_SKILLS } from "@/lib/constants/skills";
+
+// ...
+
 /**
  * Analyze a job description to extract required skills, complexity, and estimated hours
  */
@@ -82,15 +86,17 @@ export async function analyzeJob(
   description: string,
   category: string
 ): Promise<JobAnalysis> {
+  const validSkills = STANDARDIZED_SKILLS.map(s => `"${s.id}" (${s.label})`).join(", ");
+
   const systemPrompt = `You are a job analysis expert. Analyze the given job and extract:
-1. Required skills (be specific, use common skill names like "video editing", "graphic design", "react", "photoshop", etc.)
+1. Required skills from this specific list: [${validSkills}]. Only use skills from this list. If a required skill is not in the list, choose the closest match or omit it.
 2. Complexity level (simple, medium, or complex)
 3. Estimated hours to complete
 4. Your confidence in this analysis (0-1)
 
 Respond in JSON format with this exact structure:
 {
-  "requiredSkills": ["skill1", "skill2"],
+  "requiredSkills": ["skill-id-1", "skill-id-2"],
   "complexity": "simple" | "medium" | "complex",
   "estimatedHours": number,
   "confidence": number
@@ -108,13 +114,13 @@ ${description}`;
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      { temperature: 0.3 }
+      { temperature: 0.2 } // Lower temperature for more deterministic skill selection
     );
 
     // Validate and normalize the response
     return {
       requiredSkills: Array.isArray(analysis.requiredSkills)
-        ? analysis.requiredSkills.map((s) => s.toLowerCase().trim())
+        ? analysis.requiredSkills.filter(s => STANDARDIZED_SKILLS.some(valid => valid.id === s))
         : [],
       complexity: ["simple", "medium", "complex"].includes(analysis.complexity)
         ? analysis.complexity
@@ -130,7 +136,7 @@ ${description}`;
     console.error("Job analysis error:", error);
     // Return a safe default
     return {
-      requiredSkills: [category],
+      requiredSkills: [],
       complexity: "medium",
       estimatedHours: 4,
       confidence: 0.3,
