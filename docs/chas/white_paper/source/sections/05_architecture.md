@@ -1,18 +1,23 @@
 # 2. The Context Cloud Architecture
 
-The primary barrier to fungible labor in high-skill tasks is **Context**. A worker cannot edit a video or design a UI without understanding the brand's unwritten rules (style, tone, preference). In traditional firms, this context is transferred via "onboarding"—a slow, expensive process of interpersonal osmosis.
+The biggest problem with hiring a new worker is **Context**. "Context" means all the small, unwritten rules a client has. For example: "I like blue, not green," or "I want my videos to be fast, not slow."
 
-We propose a technical alternative: The **Context Cloud**.
+Usually, a worker learns these rules over many months. We call this "Institutional Memory." If the worker leaves, the memory is gone. This makes it very hard for a business to grow.
 
-## 2.1 Decoupling Memory from Labor
-In the proposed architecture, "Context" is treated as a distinct data asset, separate from the human worker. It is stored in a centralized Vector Database (e.g., Pinecone/Redis) accessible via the platform's orchestration layer.
+### 2.1 Moving Memory from Brains to Computers
+In Nimmit, we treat memory as a digital asset. We store it in a **Vector Database** (like Pinecone). This is a smart computer brain that stays with the platform, not the person.
 
-*   **Traditional Model**: Context resides in Employee A's brain. If Employee A quits, Context is lost.
-*   **Context Cloud Model**: Context resides in the System. Employee A accesses it to perform the task. If Employee A quits, Employee B accesses the same data immediately.
+This is based on the academic concept of **Transactive Memory (Wegner, 1985)**. In nature, a group of people works better when they have a shared memory of "who knows what." Nimmit builds this "group brain" using technology.
 
-## 2.2 Vector-Based Institutional Memory
-The system ingests all client assets—brand guides, past successful deliverables, and correction logs—and converts them into vector embeddings. When a new task, such as "Create a promotional video," is initiated, the system automatically retrieves the "nearest neighbor" vectors (e.g., the exact color hex codes used in the last successful video, the specific tempo preference).
+- **Old Way**: The rules are in the worker's head. If they quit, you lose everything.
+- **Nimmit Way**: The rules are in the **Context Cloud**. If a worker quits, a new one can start working in minutes because the computer already has the rules.
 
-This "Context Injection" occurs *before* the human worker sees the brief. The worker receives not just a task, but a "Pre-Architected Environment" containing all necessary constraints. This eliminates the need for judgment calls on basic standards, reducing the "ramp-up" time for a new worker from weeks to minutes.
+### 2.2 How "Context Injection" Works
+When a client asks for a new task, the system automatically finds the rules from past work. This is called **Context Injection**. Before the human worker starts, the computer gives them:
+- Styles from past successful work.
+- Mistakes to avoid from past feedback.
+- Specific rules for that client.
+
+The worker doesn't have to guess. They have the "memory" of every job Nimmit has ever done for that client.
 
 \newpage

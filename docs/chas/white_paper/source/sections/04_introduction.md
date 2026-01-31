@@ -1,13 +1,17 @@
 # 1. Introduction
 
-The defining economic unit of the 2020s is not the corporation but the networked individual—the "Micro-Entity." This category includes independent software vendors (ISVs), specialized content creators, and single-proprietor consultants who generate significant revenue streams without traditional organizational structures.
+In 2026, the most important business unit is not the big company. It is the **Micro-Entity**. This is one person (a "solopreneur") who uses the internet to make a lot of money without having any employees.
 
-However, the growth of the Micro-Entity is strictly bounded by the "Linear Scaling Limit." To increase output, the individual must currently either:
-1.  Increase personal labor hours (capped by biological limits).
-2.  Hire employees (introducing management friction).
+### The Scaling Problem
+Even though these people are successful, they hit a wall. To grow their business, they have two choices:
+1.  **Work more hours**: But a human only has 24 hours in a day.
+2.  **Hire employees**: But hiring people is slow and expensive.
 
-This creates a paradox: The mechanism designed to solve the labor shortage (hiring) introduces a management tax that consumes the time saved. This "Friction Trap" prevents Micro-Entities from competing with institutional incumbents.
+This is the **"Friction Trap."** In 1937, the economist **Ronald Coase** explained that companies exist because it is expensive to find, hire, and manage outside workers. These are "Transaction Costs." For a Micro-Entity, these costs are too high. If you spend all day managing a freelancer, you have no time to grow your own business.
 
-This paper proposes that the solution is not "better hiring" but "friction deletion." By introducing an algorithmic intermediation layer—an "Operating System for Virtual Work"—we can decouple the execution of a task from the identity of the worker, thereby allowing labor to be consumed as a utility rather than a relationship.
+### The Solution: Deleting Friction
+We believe the answer is not hiring "better" people. The answer is **deleting the friction** by using a specialized computer system. 
+
+By building an "Operating System for Virtual Work," Nimmit disconnects the work from the person. We treat memory (how to do the work) as data. This allows work to be done like a utility—just like turning on a light switch. You don't need a relationship with the power plant to get electricity; you just need a standard plug. Nimmit is that plug for high-level work.
 
 \newpage

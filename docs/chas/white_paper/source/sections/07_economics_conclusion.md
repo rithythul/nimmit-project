@@ -1,15 +1,19 @@
-# 4. Economic Implications: Arbitrage of Reliability
+# 4. Economic Impact: Reliability over Cost
 
-The global outsourcing market (BPO) has traditionally competed on **Cost Arbitrage**—moving work to where labor is cheapest. The model proposed here competes on **Reliability Arbitrage**.
+Most companies outsource work to other countries just to save money. This is called "Cost Arbitrage." The problem is that cheap work is often low quality. The client saves money but loses time fixing mistakes.
 
-## 4.1 The Value Surplus
-By deploying the "Context Cloud" and "Agentic Pods," the system reduces the effective cost of production (through AI efficiency) while increasing the effective quality (through human judgment).
+Nimmit focuses on **Reliability Arbitrage**. Because of the **Context Cloud**, we provide high-quality results every single time.
 
-This creates a value surplus:
-*   **For the Client**: Access to "Agency-Level" output at "Freelancer" prices, with zero management overhead.
-*   **For the Worker**: The efficiency gains allow the Orchestrator to earn significantly above local market rates. Because they are 10x more productive, the system can pay them 3x the standard wage and still retain margin.
+### 4.1 The Value Surplus
+By using AI to delete waste, we create a "Value Surplus." This means there is extra value for everyone.
+- **For the Client**: You get "Agency Quality" (very high) at "Freelancer Prices" (very low). Best of all, you spend zero time managing the worker.
+- **For the Worker**: Because the Orchestrator is 10x faster with AI, Nimmit can pay them 3x more than the local average wage. 
 
-## 4.2 Conclusion
-The "Nimmit" model suggests that the future of work is not a choice between "Human" and "AI," but a restructuring of their relationship. By creating an Operating System that handles memory and friction, we enable a new class of global labor that is scalable, fungible, and highly valued. The transition from "hiring people" to "provisioning outcomes" is the necessary evolution for the Micro-Entity economy.
+This is a win-win. We don't compete on being the "cheapest." We compete on being the most **reliable**.
+
+### 4.2 Conclusion: The Future of Work
+The future of work is not "Human vs. AI." It is "Human + AI." 
+
+By building a system that handles the memory and the boring tasks, we allow people to focus on what they are best at: **Judgment**. This shift from "hiring people" to "buying outcomes" is the next step for the global economy. Nimmit is the platform that makes this possible.
 
 \newpage
